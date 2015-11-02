@@ -62,6 +62,7 @@ public class PersonController {
     public
     @ResponseBody
     ResponseEntity<PersonDTO> getPerson(@PathVariable Integer identifier) throws InterruptedException {
+        Thread.sleep(Integer.valueOf(System.getProperty("sleepTime", "0")) * 1000);
         PersonDTO person = this.personTranslator.translateToDTO(this.personService.retrievePerson(identifier));
         if (person != null) {
             return new ResponseEntity<PersonDTO>(person, HttpStatus.OK);
