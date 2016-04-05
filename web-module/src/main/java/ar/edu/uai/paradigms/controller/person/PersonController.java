@@ -1,5 +1,7 @@
 package ar.edu.uai.paradigms.controller.person;
 
+import ar.edu.uai.model.person.Person;
+import ar.edu.uai.model.person.PersonCriteria;
 import ar.edu.uai.paradigms.dto.person.PersonCriteriaDTO;
 import ar.edu.uai.paradigms.dto.person.PersonDTO;
 import ar.edu.uai.paradigms.service.PersonService;
@@ -41,8 +43,10 @@ public class PersonController {
     @ResponseBody
     ResponseEntity<PersonDTO> createPerson(@RequestBody PersonDTO personDTO) {
         LOGGER.debug("Received DTO: " + personDTO);
-        return new ResponseEntity<PersonDTO>(this.personTranslator.translateToDTO(this.personService
-                .savePerson(this.personTranslator.translate(personDTO))), HttpStatus.CREATED);
+        Person personModel = this.personTranslator.translate(personDTO);
+        Person person = this.personService.savePerson(personModel);
+        PersonDTO personDTOOutput = this.personTranslator.translateToDTO(person);
+        return new ResponseEntity<PersonDTO>(personDTOOutput, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -50,15 +54,18 @@ public class PersonController {
     @ResponseBody
     ResponseEntity<List<PersonDTO>> retrieveByCriteria(PersonCriteriaDTO personCriteria) {
         LOGGER.debug("Received QUERY: " + personCriteria);
-        return new ResponseEntity<List<PersonDTO>>(this.personTranslator.translateToDTO(this.personService
-                .retrieveByCriteria(this.personTranslator.translateCriteria(personCriteria))), HttpStatus.OK);
+        PersonCriteria criteria = this.personTranslator.translateCriteria(personCriteria);
+        List<Person> persons = this.personService.retrieveByCriteria(criteria);
+        List<PersonDTO> personDTOs = this.personTranslator.translateToDTO(persons);
+        return new ResponseEntity<List<PersonDTO>>(personDTOs, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{identifier}")
     public
     @ResponseBody
     ResponseEntity<PersonDTO> getPerson(@PathVariable Integer identifier) throws InterruptedException {
-        PersonDTO person = this.personTranslator.translateToDTO(this.personService.retrievePerson(identifier));
+        Person retrievedPerson = this.personService.retrievePerson(identifier);
+        PersonDTO person = this.personTranslator.translateToDTO(retrievedPerson);
         if (person != null) {
             return new ResponseEntity<PersonDTO>(person, HttpStatus.OK);
         }
