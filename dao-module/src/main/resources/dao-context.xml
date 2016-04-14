@@ -14,6 +14,7 @@
     </bean>
 
     <bean id="personDAO" class="ar.edu.uai.paradigms.dao.PersonDAO" />
+    <bean id="autoDAO" class="ar.edu.uai.paradigms.dao.AutoDAO" />
     <!-- DataSource -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" lazy-init="true" destroy-method="close">
         <!--<property name="connectionCustomizerClassName" value="com.despegar.bookedia.persistence.dao.base.IsolationLevelC3POCustomizer" />-->
