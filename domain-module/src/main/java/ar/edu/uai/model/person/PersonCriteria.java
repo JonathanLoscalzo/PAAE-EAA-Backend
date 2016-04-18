@@ -1,9 +1,11 @@
 package ar.edu.uai.model.person;
 
+import ar.edu.uai.model.ModelCriteria;
+
 /**
  * Created by federicodonnarumma on 11/4/15.
  */
-public class PersonCriteria {
+public class PersonCriteria extends ModelCriteria{
 
     private String name;
     private Integer minAge;

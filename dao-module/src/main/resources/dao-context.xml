@@ -14,7 +14,9 @@
     </bean>
 
     <bean id="personDAO" class="ar.edu.uai.paradigms.dao.PersonDAO" />
+
     <bean id="itemDAO" class="ar.edu.uai.paradigms.dao.ItemDAO" />
+    <bean id="autoDAO" class="ar.edu.uai.paradigms.dao.AutoDAO" />
 
 
     <!-- DataSource -->
