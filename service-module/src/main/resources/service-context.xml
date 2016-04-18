@@ -7,4 +7,7 @@
 	<bean id="personService" class="ar.edu.uai.paradigms.service.impl.PersonServiceImpl">
         <constructor-arg ref="personDAO" />
     </bean>
+    <bean id="itemService" class="ar.edu.uai.paradigms.service.impl.ItemServiceImpl">
+        <constructor-arg ref="itemDAO" />
+    </bean>
 </beans>
