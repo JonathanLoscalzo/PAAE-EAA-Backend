@@ -1,5 +1,7 @@
 package ar.edu.uai.paradigms.dto.person;
 
+import ar.edu.uai.paradigms.dto.DTO;
+
 /**
  * Created by federicodonnarumma on 11/4/15.
  */

@@ -1,12 +1,13 @@
 package ar.edu.uai.paradigms.dto.person;
 
+import ar.edu.uai.paradigms.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Federico Donnarumma on 10/15/14.
  */
-public class PersonDTO {
+public class PersonDTO extends DTO<Number> {
 
     private Integer id;
 

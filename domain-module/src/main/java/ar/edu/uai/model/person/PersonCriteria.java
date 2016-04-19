@@ -5,7 +5,7 @@ import ar.edu.uai.model.ModelCriteria;
 /**
  * Created by federicodonnarumma on 11/4/15.
  */
-public class PersonCriteria extends ModelCriteria{
+public class PersonCriteria extends ModelCriteria<String>{
 
     private String name;
     private Integer minAge;
@@ -35,6 +35,11 @@ public class PersonCriteria extends ModelCriteria{
                 ", minAge=" + minAge +
                 ", maxAge=" + maxAge +
                 '}';
+    }
+
+    @Override
+    protected String getId() {
+        return this.getName();
     }
 }
 

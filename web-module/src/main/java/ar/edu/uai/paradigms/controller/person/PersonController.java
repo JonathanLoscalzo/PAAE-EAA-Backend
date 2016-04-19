@@ -44,7 +44,7 @@ public class PersonController {
     ResponseEntity<PersonDTO> createPerson(@RequestBody PersonDTO personDTO) {
         LOGGER.debug("Received DTO: " + personDTO);
         Person personModel = this.personTranslator.translate(personDTO);
-        Person person = this.personService.savePerson(personModel);
+        Person person = this.personService.save(personModel);
         PersonDTO personDTOOutput = this.personTranslator.translateToDTO(person);
         return new ResponseEntity<PersonDTO>(personDTOOutput, HttpStatus.CREATED);
     }
@@ -64,7 +64,7 @@ public class PersonController {
     public
     @ResponseBody
     ResponseEntity<PersonDTO> getPerson(@PathVariable Integer identifier) throws InterruptedException {
-        Person retrievedPerson = this.personService.retrievePerson(identifier);
+        Person retrievedPerson = this.personService.retrieve(identifier);
         PersonDTO person = this.personTranslator.translateToDTO(retrievedPerson);
         if (person != null) {
             return new ResponseEntity<PersonDTO>(person, HttpStatus.OK);
@@ -76,7 +76,7 @@ public class PersonController {
     public
     @ResponseBody
     ResponseEntity<String> deletePerson(@PathVariable Integer identifier) {
-        this.personService.deletePerson(identifier);
+        this.personService.delete(identifier);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 }
