@@ -74,4 +74,6 @@
 		<constructor-arg name="personTranslator" ref="personTranslator"/>
 	</bean>
 	<bean id="personTranslator" class="ar.edu.uai.paradigms.translator.person.PersonTranslator" />
+
+    <bean name="itemController" class="ar.edu.uai.paradigms.controller.item.ItemController" />
 </beans>
