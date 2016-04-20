@@ -3,6 +3,5 @@ package ar.edu.uai.model.Generics;
 /**
  * Created by jloscalzo on 14/04/16.
  */
-public abstract class ModelCriteria<S> extends Model{
-    abstract protected S getId();
+public abstract class ModelCriteria<S> extends Model<S>{
 }
