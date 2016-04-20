@@ -11,7 +11,6 @@ public class AutoCriteriaDTO extends DTO<String> {
     public AutoCriteriaDTO() {}
 
     public AutoCriteriaDTO(String name) {
-        this();
         this.name = name;
     }
 

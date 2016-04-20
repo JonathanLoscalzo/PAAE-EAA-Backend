@@ -1,6 +1,6 @@
 package ar.edu.uai.model.auto;
 
-import ar.edu.uai.model.ModelCriteria;
+import ar.edu.uai.model.Generics.ModelCriteria;
 
 /**
  * Created by jloscalzo on 14/04/16.

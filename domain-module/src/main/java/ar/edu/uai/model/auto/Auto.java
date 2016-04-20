@@ -1,6 +1,6 @@
 package ar.edu.uai.model.auto;
 
-import ar.edu.uai.model.Model;
+import ar.edu.uai.model.Generics.Model;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

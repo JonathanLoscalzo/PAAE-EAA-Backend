@@ -1,7 +1,7 @@
 package ar.edu.uai.model.person;
 
 
-import ar.edu.uai.model.Model;
+import ar.edu.uai.model.Generics.Model;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

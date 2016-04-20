@@ -1,6 +1,6 @@
 package ar.edu.uai.model.person;
 
-import ar.edu.uai.model.ModelCriteria;
+import ar.edu.uai.model.Generics.ModelCriteria;
 
 /**
  * Created by federicodonnarumma on 11/4/15.

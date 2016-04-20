@@ -1,4 +1,4 @@
-package ar.edu.uai.model;
+package ar.edu.uai.model.Generics;
 
 /**
  * Created by jloscalzo on 14/04/16.

@@ -8,7 +8,7 @@ import ar.edu.uai.paradigms.service.AutoService;
 /**
  * Created by jloscalzo on 14/04/16.
  */
-public class AutoServiceImpl extends ServiceImpl<Auto,AutoCriteria> implements AutoService{
+public class AutoServiceImpl extends ServiceImpl<Auto,Integer> implements AutoService{
 
     public AutoServiceImpl(AutoDAO dao) {
         super(dao);

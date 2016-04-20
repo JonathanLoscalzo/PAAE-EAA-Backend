@@ -1,6 +1,6 @@
 package ar.edu.uai.paradigms.controller.auto;
 
-import ar.edu.uai.paradigms.controller.Controller;
+import ar.edu.uai.paradigms.controller.Generics.Controller;
 import ar.edu.uai.paradigms.service.AutoService;
 import ar.edu.uai.paradigms.translator.auto.AutoTranslator;
 
@@ -10,6 +10,6 @@ import ar.edu.uai.paradigms.translator.auto.AutoTranslator;
 public class AutoController extends Controller {
 
     public AutoController(AutoService autoService, AutoTranslator autoTranslator){
-        super(autoService, autoTranslator, AutoController.class);
+        super(autoService, autoTranslator);
     }
 }
