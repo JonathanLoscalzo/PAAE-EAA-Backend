@@ -11,11 +11,12 @@ import java.util.List;
 /**
  * Created by Skeith on 17/04/2016.
  */
-public class ItemServiceImpl implements ItemService
+public class ItemServiceImpl extends ServiceImpl<Item,Integer> implements ItemService
 {
     private ItemDAO itemDAO;
 
     public ItemServiceImpl(ItemDAO itemDAO) {
+        super(itemDAO);
         this.itemDAO = itemDAO;
     }
 

@@ -1,11 +1,13 @@
 package ar.edu.uai.model.item;
 
+import ar.edu.uai.model.Generics.Model;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ITEM")
 @Access(AccessType.FIELD)
-public class Item {
+public class Item extends Model<Integer> {
     @Id
     @GeneratedValue
     @Column(name = "ITEM_ID", unique = true, nullable = false)
@@ -30,6 +32,7 @@ public class Item {
         this.amount = amount;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }

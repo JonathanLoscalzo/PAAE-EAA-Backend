@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * Created by Skeith on 17/04/2016.
  */
-public interface ItemService {
+public interface ItemService extends Service<Item,Integer>
+{
 
     Item saveItem(Item item);
 

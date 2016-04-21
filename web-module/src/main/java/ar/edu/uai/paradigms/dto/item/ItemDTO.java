@@ -1,12 +1,16 @@
 package ar.edu.uai.paradigms.dto.item;
 
+import ar.edu.uai.paradigms.dto.DTO;
+
+
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Hal on 18/04/2016.
  */
-public class ItemDTO {
+public class ItemDTO extends DTO<Integer> {
     private Integer id;
 
     private String name;
@@ -22,6 +26,7 @@ public class ItemDTO {
         this.amount = amount;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
