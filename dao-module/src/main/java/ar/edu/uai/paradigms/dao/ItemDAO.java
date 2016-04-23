@@ -2,10 +2,16 @@ package ar.edu.uai.paradigms.dao;
 
 import ar.edu.uai.model.item.Item;
 import ar.edu.uai.model.item.ItemCriteria;
+import ar.edu.uai.model.person.Person;
 
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +46,12 @@ public class ItemDAO implements PersistentDAO<Item, Integer, ItemCriteria>
 
     @Override
     public List<Item> retrieveByCriteria(ItemCriteria itemCriteria) {
-        return new ArrayList<Item>();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Item> query = cb.createQuery(Item.class);
+        Root<Item> item = query.from(Item.class);
+        query.select(item);
+
+        TypedQuery<Item> typedQuery = entityManager.createQuery(query);
+        return typedQuery.getResultList();
     }
 }
