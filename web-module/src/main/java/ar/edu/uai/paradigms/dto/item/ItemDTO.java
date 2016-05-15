@@ -1,11 +1,11 @@
 package ar.edu.uai.paradigms.dto.item;
 
-import ar.edu.uai.paradigms.dto.DTO;
+        import ar.edu.uai.paradigms.dto.DTO;
 
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+        import com.fasterxml.jackson.annotation.JsonCreator;
+        import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Hal on 18/04/2016.

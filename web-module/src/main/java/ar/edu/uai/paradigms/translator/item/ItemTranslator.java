@@ -3,7 +3,6 @@ package ar.edu.uai.paradigms.translator.item;
 import ar.edu.uai.model.item.Item;
 import ar.edu.uai.model.item.ItemCriteria;
 import ar.edu.uai.paradigms.dto.item.ItemCriteriaDTO;
-import ar.edu.uai.paradigms.dto.person.PersonCriteriaDTO;
 import ar.edu.uai.paradigms.dto.item.ItemDTO;
 
 import java.util.ArrayList;
@@ -25,14 +24,14 @@ public class ItemTranslator {
     }
 
     public List<ItemDTO> translateToDTO(List<Item> items) {
-        List<ItemDTO> personResponse = new ArrayList<ItemDTO>();
+        List<ItemDTO> itemResponse = new ArrayList<ItemDTO>();
         for(Item i : items) {
             ItemDTO itemDTO = this.translateToDTO(i);
             if(itemDTO != null) {
-                personResponse.add(itemDTO);
+                itemResponse.add(itemDTO);
             }
         }
-        return personResponse;
+        return itemResponse;
     }
 
     public ItemCriteria translateCriteria(ItemCriteriaDTO itemCriteriaDTO) {

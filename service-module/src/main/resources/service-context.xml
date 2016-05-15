@@ -12,6 +12,10 @@
         <constructor-arg ref="itemDAO" />
     </bean>
 
+    <bean id="loteService" class="ar.edu.uai.paradigms.service.impl.LoteServiceImpl">
+        <constructor-arg ref="loteDAO" />
+    </bean>
+
     <bean id="AutoService" class="ar.edu.uai.paradigms.service.impl.AutoServiceImpl">
         <constructor-arg ref="autoDAO"></constructor-arg>
     </bean>
