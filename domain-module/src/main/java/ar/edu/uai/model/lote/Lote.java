@@ -1,6 +1,7 @@
 package ar.edu.uai.model.lote;
 
 import ar.edu.uai.model.Generics.Model;
+import ar.edu.uai.model.producto.Producto;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,7 +28,7 @@ public class Lote extends Model<Integer> {
 
     @ManyToOne
     @JoinColumn(name="PRODUCTO_ID")
-    private Integer idProducto;
+    private Producto producto;
 
     public Lote() {
     }
@@ -55,6 +56,9 @@ public class Lote extends Model<Integer> {
         return fechaEntrada;
     }
 
+    public  Producto getProducto() {
+        return producto;
+    }
 
     @Override
     public String toString() {

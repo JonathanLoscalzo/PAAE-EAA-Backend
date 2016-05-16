@@ -21,9 +21,9 @@ public class ProductoDTO extends DTO<Integer> {
 
     @JsonCreator
     public ProductoDTO(@JsonProperty("id") Integer id,
-                   @JsonProperty("nombre") String nombre,
-                   @JsonProperty("minimo") Integer minimo,
-                   @JsonProperty("cantidad") Integer cantidad)
+                   @JsonProperty("name") String nombre,
+                   @JsonProperty("minimum") Integer minimo,
+                   @JsonProperty("amount") Integer cantidad)
     {
         this.id = id;
         this.nombre = nombre;

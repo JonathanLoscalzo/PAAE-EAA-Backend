@@ -5,14 +5,14 @@
         </encoder>
     </appender>
 
-    <logger name="ar.edu.uai.paradigms.controllers" level="DEBUG" additivity="false">
+    <logger name="ar.edu.uai.paradigms.controllers" level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
-    <logger name="org" level="TRACE" additivity="false">
+    <logger name="org" level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <root level="TRACE">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

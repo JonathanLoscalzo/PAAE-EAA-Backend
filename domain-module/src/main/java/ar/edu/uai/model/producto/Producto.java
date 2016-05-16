@@ -25,7 +25,7 @@ public class Producto extends Model<Integer> {
     @Column(name = "CANTIDAD", nullable = false)
     private Integer cantidad;
 
-    @OneToMany(mappedBy = "LOTE_ID")
+    @OneToMany(mappedBy="producto", cascade=CascadeType.ALL)
     private Collection<Lote> lotes;
 
     public Producto() {
@@ -54,10 +54,13 @@ public class Producto extends Model<Integer> {
         return cantidad;
     }
 
+
     public Collection<Lote> getLotes()
     {
         return lotes;
     }
+
+
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + " [id=" + SKU +
