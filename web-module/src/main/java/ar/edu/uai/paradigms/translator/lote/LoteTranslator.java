@@ -36,9 +36,9 @@ public class LoteTranslator
     public List<LoteDTO> translateToDTO(List<Lote> lotes) {
         List<LoteDTO> loteResponse = new ArrayList<LoteDTO>();
         for(Lote i : lotes) {
-            LoteDTO LoteDTO = this.translateToDTO(i);
-            if(LoteDTO != null) {
-                loteResponse.add(LoteDTO);
+            LoteDTO loteDTO = this.translateToDTO(i);
+            if(loteDTO != null) {
+                loteResponse.add(loteDTO);
             }
         }
         return loteResponse;

@@ -40,7 +40,8 @@ public class LoteServiceImpl extends ServiceImpl<Lote,Integer> implements LoteSe
     }
 
     @Override
-    public List<Lote> retrieveByCriteria(LoteCriteria criteria) {
+    public List<Lote> retrieveByCriteria(LoteCriteria criteria)
+    {
         return this.loteDAO.retrieveByCriteria(criteria);
     }
 }

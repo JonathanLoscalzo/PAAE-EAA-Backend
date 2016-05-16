@@ -17,6 +17,8 @@
 
     <bean id="itemDAO" class="ar.edu.uai.paradigms.dao.ItemDAO" />
     <bean id="loteDAO" class="ar.edu.uai.paradigms.dao.LoteDAO" />
+    <bean id="productoDAO" class="ar.edu.uai.paradigms.dao.ProductoDAO" />
+
     <bean id="autoDAO" class="ar.edu.uai.paradigms.dao.AutoDAO" />
 
 
