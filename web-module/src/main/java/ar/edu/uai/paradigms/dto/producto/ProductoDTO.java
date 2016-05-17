@@ -45,6 +45,7 @@ public class ProductoDTO extends DTO<Integer> {
     }
 
 
+    @JsonProperty(value = "name")
     public String getNombre() {
         return nombre;
     }

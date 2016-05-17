@@ -11,7 +11,6 @@ import java.util.List;
 public interface ProductoService extends Service<Producto,Integer>
 {
 
-        Producto saveProducto(Producto lote);
 
         Producto retrieveProducto(Integer identifier);
 

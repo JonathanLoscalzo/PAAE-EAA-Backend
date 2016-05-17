@@ -5,6 +5,7 @@ import ar.edu.uai.model.producto.ProductoCriteria;
 
 import ar.edu.uai.paradigms.dao.ProductoDAO;
 import ar.edu.uai.paradigms.service.ProductoService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,10 +19,7 @@ public class ProductoServiceImpl extends ServiceImpl<Producto,Integer> implement
         super(productoDAO);
         this.productoDAO = productoDAO;
     }
-    @Override
-    public Producto saveProducto(Producto producto) {
-        return this.productoDAO.create(producto);
-    }
+
 
     @Override
     public Producto retrieveProducto(Integer identifier) {
@@ -29,6 +27,7 @@ public class ProductoServiceImpl extends ServiceImpl<Producto,Integer> implement
     }
 
     @Override
+    @Transactional
     public void deleteProducto(Integer identifier)
     {
         this.productoDAO.delete(identifier);

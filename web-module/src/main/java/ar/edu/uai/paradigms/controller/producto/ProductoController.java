@@ -44,7 +44,7 @@ public class ProductoController {
         LOGGER.debug("Received DTO: " + productoDTO);
 
         Producto productoModel          = this.productoTranslator.translate(productoDTO);
-        Producto producto               = this.productoService.saveProducto(productoModel);
+        Producto producto               = this.productoService.save(productoModel);
         ProductoDTO productoDTOOutput   = this.productoTranslator.translateToDTO(producto);
 
         return new ResponseEntity<ProductoDTO>(productoDTOOutput, HttpStatus.CREATED);
