@@ -20,28 +20,5 @@ public class LoteServiceImpl extends ServiceImpl<Lote,Integer> implements LoteSe
         this.loteDAO = loteDAO;
     }
 
-    @Transactional
-    public Lote saveLote(Lote lote) {
 
-        return this.loteDAO.create(lote);
-    }
-
-    @Override
-    public Lote retrieveLote(Integer identifier) {
-
-        return this.loteDAO.retrieve(identifier);
-    }
-
-    @Transactional
-    @Override
-    public void deleteLote(Integer identifier) {
-
-        this.loteDAO.delete(identifier);
-    }
-
-    @Override
-    public List<Lote> retrieveByCriteria(LoteCriteria criteria)
-    {
-        return this.loteDAO.retrieveByCriteria(criteria);
-    }
 }

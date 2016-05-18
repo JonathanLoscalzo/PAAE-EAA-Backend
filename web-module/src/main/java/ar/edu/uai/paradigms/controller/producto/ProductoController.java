@@ -67,7 +67,7 @@ public class ProductoController {
     public
     @ResponseBody
     ResponseEntity<ProductoDTO> getProduct(@PathVariable Integer identifier) throws InterruptedException {
-        Producto retrievedProduct = this.productoService.retrieveProducto(identifier);
+        Producto retrievedProduct = this.productoService.retrieve(identifier);
         ProductoDTO product = this.productoTranslator.translateToDTO(retrievedProduct);
         if (product != null) {
             return new ResponseEntity<ProductoDTO>(product, HttpStatus.OK);
@@ -79,7 +79,7 @@ public class ProductoController {
     public
     @ResponseBody
     ResponseEntity<String> delete(@PathVariable Integer identifier) {
-        this.productoService.deleteProducto(identifier);
+        this.productoService.delete(identifier);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,10 +1,12 @@
 package ar.edu.uai.paradigms.dto.lote;
 
+import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.paradigms.dto.DTO;
 
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -12,22 +14,31 @@ import java.util.Date;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class LoteDTO extends DTO<Integer> {
-    private Integer id;
+public class LoteDTO extends DTO<Integer>
+{
 
-    private String detalle;
-    private Date fechaVencimiento;
-    private Date fechaEntrada;
+    private Integer     id;
+    private String      detalle;
+    private Date        fechaVencimiento;
+    private Date        fechaEntrada;
+    private Producto    producto;
+
+
 
     @JsonCreator
     public LoteDTO(@JsonProperty("id") Integer id,
-                   @JsonProperty("fecha_vencimiento") Date fechaVencimiento,
-                   @JsonProperty("fecha_entrada") Date fechaEntrada,
-                   @JsonProperty("detalle") String detalle) {
+                   @JsonProperty("expiration_date") Date fechaVencimiento,
+                   @JsonProperty("entry_date")
+                   @JsonFormat(
+                           shape = JsonFormat.Shape.STRING,
+                           pattern = "dd-MM-yyyy hh:mm:ss")
+                   Date fechaEntrada,
+                   @JsonProperty("detail") String detalle) {
         this.id = id;
         this.detalle = detalle;
         this.fechaVencimiento = fechaVencimiento;
         this.fechaEntrada = fechaEntrada;
+
     }
 
     @Override
@@ -53,4 +64,15 @@ public class LoteDTO extends DTO<Integer> {
     public Date getFechaEntrada() {
         return fechaEntrada;
     }
+
+    public Producto getProducto()
+    {
+        return producto;
+    }
+
+    public void setProducto(Producto producto)
+    {
+        this.producto = producto;
+    }
+
 }

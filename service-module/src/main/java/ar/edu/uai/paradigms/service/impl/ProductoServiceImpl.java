@@ -21,22 +21,4 @@ public class ProductoServiceImpl extends ServiceImpl<Producto,Integer> implement
     }
 
 
-    @Override
-    public Producto retrieveProducto(Integer identifier) {
-        return this.productoDAO.retrieve(identifier);
-    }
-
-    @Override
-    @Transactional
-    public void deleteProducto(Integer identifier)
-    {
-        this.productoDAO.delete(identifier);
-    }
-
-    @Override
-    public List<Producto> retrieveByCriteria(ProductoCriteria criteria)
-    {
-        return this.productoDAO.retrieveByCriteria(criteria);
-    }
-
 }

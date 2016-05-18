@@ -17,9 +17,9 @@ public class ProductoTranslator
     public Producto translate(ProductoDTO productoDTO)
     {
         return new Producto (productoDTO.getId(),
-                            productoDTO.getNombre(),
-                            productoDTO.getMinimo(),
-                            productoDTO.getCantidad());
+                            productoDTO.getName(),
+                            productoDTO.getMinimum(),
+                            productoDTO.getAmount());
     }
 
     public ProductoDTO translateToDTO(Producto producto)

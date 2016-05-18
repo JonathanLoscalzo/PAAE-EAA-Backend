@@ -15,20 +15,20 @@ import java.util.Date;
 public class ProductoDTO extends DTO<Integer> {
     private Integer id;
 
-    private String nombre;
-    private Integer minimo;
-    private Integer cantidad;
+    private String name;
+    private Integer minimum;
+    private Integer amount;
 
     @JsonCreator
     public ProductoDTO(@JsonProperty("id") Integer id,
-                   @JsonProperty("name") String nombre,
-                   @JsonProperty("minimum") Integer minimo,
-                   @JsonProperty("amount") Integer cantidad)
+                   @JsonProperty("name") String name,
+                   @JsonProperty("minimum") Integer minimum,
+                   @JsonProperty("amount") Integer amount)
     {
         this.id = id;
-        this.nombre = nombre;
-        this.minimo = minimo;
-        this.cantidad = cantidad;
+        this.name = name;
+        this.minimum = minimum;
+        this.amount = amount;
     }
 
 
@@ -41,20 +41,19 @@ public class ProductoDTO extends DTO<Integer> {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " [id=" + id + ", nombre=" + nombre + "]";
+        return this.getClass().getSimpleName() + " [id=" + id + ", nombre=" + name + "]";
     }
 
 
-    @JsonProperty(value = "name")
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public Integer getMinimo() {
-        return minimo;
+    public Integer getMinimum() {
+        return minimum;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public Integer getAmount() {
+        return amount;
     }
 }

@@ -11,10 +11,4 @@ import java.util.List;
 public interface ProductoService extends Service<Producto,Integer>
 {
 
-
-        Producto retrieveProducto(Integer identifier);
-
-        void deleteProducto(Integer identifier);
-
-        List<Producto> retrieveByCriteria(ProductoCriteria criteria);
 }

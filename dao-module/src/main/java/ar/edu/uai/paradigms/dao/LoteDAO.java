@@ -3,6 +3,7 @@ package ar.edu.uai.paradigms.dao;
 
 import ar.edu.uai.model.lote.Lote;
 import ar.edu.uai.model.lote.LoteCriteria;
+import org.slf4j.Logger;
 
 
 import javax.persistence.EntityManager;
@@ -24,7 +25,10 @@ public class LoteDAO implements PersistentDAO<Lote, Integer, LoteCriteria>
     private EntityManager entityManager;
 
     @Override
-    public Lote create(Lote lote) {
+    public Lote create(Lote lote)
+    {
+        //lote.getProducto().getLotes().add(lote);
+
         this.entityManager.persist(lote);
         return lote;
     }

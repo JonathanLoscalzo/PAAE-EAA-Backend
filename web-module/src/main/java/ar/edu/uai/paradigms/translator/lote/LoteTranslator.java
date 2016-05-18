@@ -18,17 +18,20 @@ public class LoteTranslator
         return new Lote(loteDTO.getId(),
                         loteDTO.getFechaVencimiento(),
                         loteDTO.getFechaEntrada(),
-                        loteDTO.getDetalle());
+                        loteDTO.getDetalle(),
+                        loteDTO.getProducto());
     }
 
     public LoteDTO translateToDTO(Lote lote)
     {
         if (lote != null)
         {
-            return new LoteDTO( lote.getId(),
-                                lote.getFechaVencimiento(),
-                                lote.getFechaEntrada(),
-                                lote.getDetalle());
+            LoteDTO loteDTO = new LoteDTO( lote.getId(),
+                    lote.getFechaVencimiento(),
+                    lote.getFechaEntrada(),
+                    lote.getDetalle());
+            loteDTO.setProducto(lote.getProducto());
+            return loteDTO;
         }
         return null;
     }

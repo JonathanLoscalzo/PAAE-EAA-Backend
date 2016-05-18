@@ -25,7 +25,6 @@ public class Lote extends Model<Integer> {
     private String detalle;
 
 
-
     @ManyToOne
     @JoinColumn(name="PRODUCTO_ID")
     private Producto producto;
@@ -33,11 +32,12 @@ public class Lote extends Model<Integer> {
     public Lote() {
     }
 
-    public Lote(Integer id, Date fechaVencimiento, Date fechaEntrada, String detalle) {
+    public Lote(Integer id, Date fechaVencimiento, Date fechaEntrada, String detalle, Producto producto) {
         this.id = id;
         this.fechaVencimiento = fechaVencimiento;
         this.fechaEntrada = fechaEntrada;
         this.detalle = detalle;
+        this.producto = producto;
     }
 
     @Override

@@ -11,11 +11,5 @@ import java.util.List;
 public interface LoteService extends Service<Lote,Integer>
 {
 
-    Lote saveLote(Lote lote);
 
-    Lote retrieveLote(Integer identifier);
-
-    void deleteLote(Integer identifier);
-
-    List<Lote> retrieveByCriteria(LoteCriteria criteria);
 }

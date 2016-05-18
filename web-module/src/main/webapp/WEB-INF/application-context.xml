@@ -86,6 +86,13 @@
         <constructor-arg name="productoTranslator"  ref="productoTranslator" />
     </bean>
 
+    <bean id="loteController" class="ar.edu.uai.paradigms.controller.lote.LoteController" >
+        <constructor-arg name="loteService"         ref="loteService" />
+        <constructor-arg name="loteTranslator"      ref="loteTranslator" />
+        <constructor-arg name="productoService"     ref="productoService" />
+    </bean>
+
     <bean id="itemTranslator"       class="ar.edu.uai.paradigms.translator.item.ItemTranslator" />
     <bean id="productoTranslator"   class="ar.edu.uai.paradigms.translator.producto.ProductoTranslator" />
+    <bean id="loteTranslator"   class="ar.edu.uai.paradigms.translator.lote.LoteTranslator" />
 </beans>
