@@ -2,6 +2,7 @@ package ar.edu.uai.model.producto;
 
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.lote.Lote;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,8 +26,15 @@ public class Producto extends Model<Integer> {
     @Column(name = "CANTIDAD", nullable = false)
     private Integer cantidad;
 
-    @OneToMany(mappedBy="producto", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="producto", cascade=CascadeType.ALL)
+    @JsonManagedReference
     private Collection<Lote> lotes;
+
+
+    public Collection<Lote> getLotes()
+    {
+        return lotes;
+    }
 
     public Producto() {
     }
@@ -55,10 +63,7 @@ public class Producto extends Model<Integer> {
     }
 
 
-    public Collection<Lote> getLotes()
-    {
-        return lotes;
-    }
+
 
 
     @Override

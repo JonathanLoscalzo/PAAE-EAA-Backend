@@ -46,50 +46,56 @@ public class LoteController {
     @ResponseBody
     public ResponseEntity<LoteDTO> create(@RequestBody LoteDTO loteDTO,
                                           @PathVariable Integer productID) {
-        LOGGER.debug("Received DTO: " + loteDTO);
-
+        //LOGGER.debug("Received DTO: " + loteDTO);
+        LOGGER.error("###############################################################");
+        LOGGER.error("###############################################################");
         Producto prod = productoService.retrieve(productID);
-        LOGGER.error("########################################################################################");
-        LOGGER.error("########################################################################################");
 
+        LOGGER.error("###############################################################");
+        Lote loteModel          = this.loteTranslator.translate(loteDTO, prod);
 
-        loteDTO.setProducto(prod);
-        Lote loteModel          = this.loteTranslator.translate(loteDTO);
-        LOGGER.error("nos trajimos a "+loteModel.getDetalle());
-        LOGGER.error("nos trajimos a "+loteModel.getFechaEntrada());
-        LOGGER.error("########################################################################################");
-        LOGGER.error("########################################################################################");
+        LOGGER.error("###############################################################");
+
+        LOGGER.error("Unidades totales: " + loteModel.getUnidadesTotales());
+        LOGGER.error("Unidades restantes: " + loteModel.getUnidadesRestantes());
+
+        LOGGER.error("###############################################################");
+        LOGGER.error("###############################################################");
         Lote lote               = this.loteService.save(loteModel);
-        LoteDTO loteDTOOutput   = this.loteTranslator.translateToDTO(lote);
+        LoteDTO loteDTOOutput   = this.loteTranslator.translateToDTO(lote,prod);
 
         return new ResponseEntity<LoteDTO>(loteDTOOutput, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<List<LoteDTO>> retrieveByCriteria(LoteCriteriaDTO loteCriteria) {
+    public ResponseEntity<List<LoteDTO>> retrieveByCriteria(LoteCriteriaDTO loteCriteria,
+                                                            @PathVariable Integer productID) {
         LOGGER.debug("Received QUERY: " + loteCriteria);
-        LoteCriteria criteria = this.loteTranslator.translateCriteria(loteCriteria);
-        List<Lote> lotes = this.loteService.retrieveByCriteria(criteria);
-        List<LoteDTO> lotesDTOs = this.loteTranslator.translateToDTO(lotes);
+        Producto prod = productoService.retrieve(productID);
+
+        List<LoteDTO> lotesDTOs = this.loteTranslator.translateToDTO(prod.getLotes(),prod);
         return new ResponseEntity<List<LoteDTO>>(lotesDTOs, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{identifier}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{batchID}")
     @ResponseBody
-    public ResponseEntity<LoteDTO> getLote(@PathVariable Integer identifier) throws InterruptedException {
-        Lote retrievedLote = this.loteService.retrieve(identifier);
-        LoteDTO lote = this.loteTranslator.translateToDTO(retrievedLote);
-        if (lote != null) {
-            return new ResponseEntity<LoteDTO>(lote, HttpStatus.OK);
+    public ResponseEntity<LoteDTO> getLote(@PathVariable Integer productID,
+                                           @PathVariable Integer batchID) throws InterruptedException {
+        Lote retrievedLote  = this.loteService.retrieve(batchID);
+        Producto prod       = this.productoService.retrieve(productID);
+
+        LoteDTO loteDTO = this.loteTranslator.translateToDTO(retrievedLote, prod);
+        if (loteDTO != null) {
+            return new ResponseEntity<LoteDTO>(loteDTO, HttpStatus.OK);
         }
         return new ResponseEntity<LoteDTO>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{identifier}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{batchID}")
     @ResponseBody
-    public ResponseEntity<String> delete(@PathVariable Integer identifier) {
-        this.loteService.delete(identifier);
+    public ResponseEntity<String> delete(@PathVariable Integer batchID) {
+        this.loteService.delete(batchID);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 }

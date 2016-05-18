@@ -18,27 +18,30 @@ public class LoteDTO extends DTO<Integer>
 {
 
     private Integer     id;
-    private String      detalle;
-    private Date        fechaVencimiento;
-    private Date        fechaEntrada;
-    private Producto    producto;
+    private String      detail;
+    private Date        expiration_date;
+    private Date        entry_date;
+    private Integer     product_id;
 
+    private Integer     remaining_units;
+    private Integer     total_units;
 
 
     @JsonCreator
-    public LoteDTO(@JsonProperty("id") Integer id,
-                   @JsonProperty("expiration_date") Date fechaVencimiento,
-                   @JsonProperty("entry_date")
-                   @JsonFormat(
-                           shape = JsonFormat.Shape.STRING,
-                           pattern = "dd-MM-yyyy hh:mm:ss")
-                   Date fechaEntrada,
-                   @JsonProperty("detail") String detalle) {
+    public LoteDTO(@JsonProperty("id")              Integer id,
+                   @JsonProperty("expiration_date") Date expiration_date,
+                   @JsonProperty("entry_date")      Date entry_date,
+                   @JsonProperty("detail")          String detail,
+                   @JsonProperty("product_id")      Integer product_id,
+                   @JsonProperty("total_units")     Integer total_units)
+    {
         this.id = id;
-        this.detalle = detalle;
-        this.fechaVencimiento = fechaVencimiento;
-        this.fechaEntrada = fechaEntrada;
-
+        this.detail = detail;
+        this.expiration_date = expiration_date;
+        this.entry_date = entry_date;
+        this.product_id = product_id;
+        this.remaining_units = total_units;
+        this.total_units = total_units;
     }
 
     @Override
@@ -49,30 +52,33 @@ public class LoteDTO extends DTO<Integer>
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " [id=" + id + ", detalle=" + detalle + "]";
+        return this.getClass().getSimpleName() + " [id=" + id + ", detalle=" + detail + "]";
     }
 
 
-    public String getDetalle() {
-        return detalle;
+    public void setRemaining_units(Integer remaining_units) {
+        this.remaining_units = remaining_units;
     }
 
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
+    public Integer getProduct_id() {
+        return product_id;
+    }
+    public Integer getRemaining_units() {
+        return remaining_units;
+    }
+    public Integer getTotal_units() {
+        return total_units;
+    }
+    public Date getExpiration_date() {
+        return expiration_date;
     }
 
-    public Date getFechaEntrada() {
-        return fechaEntrada;
+    public String getDetail() {
+        return detail;
     }
 
-    public Producto getProducto()
-    {
-        return producto;
-    }
-
-    public void setProducto(Producto producto)
-    {
-        this.producto = producto;
+    public Date getEntry_date() {
+        return entry_date;
     }
 
 }

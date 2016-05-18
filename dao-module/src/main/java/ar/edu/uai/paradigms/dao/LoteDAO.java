@@ -27,8 +27,6 @@ public class LoteDAO implements PersistentDAO<Lote, Integer, LoteCriteria>
     @Override
     public Lote create(Lote lote)
     {
-        //lote.getProducto().getLotes().add(lote);
-
         this.entityManager.persist(lote);
         return lote;
     }

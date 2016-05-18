@@ -2,6 +2,7 @@ package ar.edu.uai.model.lote;
 
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.producto.Producto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,19 +26,36 @@ public class Lote extends Model<Integer> {
     private String detalle;
 
 
+
+    @Column(name = "UNIDADES_RESTANTES", nullable = false)
+    private Integer unidadesRestantes;
+
+    @Column(name = "UNIDADES_TOTALES", nullable = false)
+    private Integer unidadesTotales;
+
     @ManyToOne
     @JoinColumn(name="PRODUCTO_ID")
+    @JsonBackReference
     private Producto producto;
 
     public Lote() {
     }
 
-    public Lote(Integer id, Date fechaVencimiento, Date fechaEntrada, String detalle, Producto producto) {
+    public Lote(Integer id,
+                Date fechaVencimiento,
+                Date fechaEntrada,
+                String detalle,
+                Producto producto,
+                Integer unidadesRestantes,
+                Integer unidadesTotales)
+    {
         this.id = id;
         this.fechaVencimiento = fechaVencimiento;
         this.fechaEntrada = fechaEntrada;
         this.detalle = detalle;
         this.producto = producto;
+        this.unidadesRestantes = unidadesRestantes;
+        this.unidadesTotales = unidadesTotales;
     }
 
     @Override
@@ -58,6 +76,13 @@ public class Lote extends Model<Integer> {
 
     public  Producto getProducto() {
         return producto;
+    }
+
+    public Integer getUnidadesRestantes() {
+        return unidadesRestantes;
+    }
+    public Integer getUnidadesTotales() {
+        return unidadesTotales;
     }
 
     @Override
