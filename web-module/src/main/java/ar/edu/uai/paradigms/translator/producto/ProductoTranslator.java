@@ -3,6 +3,7 @@ package ar.edu.uai.paradigms.translator.producto;
 
 import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.model.producto.ProductoCriteria;
+import ar.edu.uai.model.proveedor.Proveedor;
 import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
 
@@ -14,12 +15,13 @@ import java.util.List;
  */
 public class ProductoTranslator
 {
-    public Producto translate(ProductoDTO productoDTO)
+    public Producto translate(ProductoDTO productoDTO, Proveedor proveedor)
     {
         return new Producto (productoDTO.getId(),
                             productoDTO.getName(),
                             productoDTO.getMinimum(),
-                            productoDTO.getAmount());
+                            productoDTO.getAmount(),
+                            proveedor);
     }
 
     public ProductoDTO translateToDTO(Producto producto)
@@ -29,7 +31,8 @@ public class ProductoTranslator
             return new ProductoDTO( producto.getId(),
                     producto.getNombre(),
                     producto.getMinimo(),
-                    producto.getCantidad());
+                    producto.getCantidad(),
+                    producto.getProveedor().getId());
         }
         return null;
     }

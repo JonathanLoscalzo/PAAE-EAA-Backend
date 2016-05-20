@@ -87,6 +87,7 @@
     <bean id="productoController" class="ar.edu.uai.paradigms.controller.producto.ProductoController" >
         <constructor-arg name="productoService"     ref="productoService" />
         <constructor-arg name="productoTranslator"  ref="productoTranslator" />
+        <constructor-arg name="proveedorService"    ref="proveedorService" />
     </bean>
 
     <bean id="proveedorController" class="ar.edu.uai.paradigms.controller.proveedor.ProveedorController" >
@@ -100,7 +101,7 @@
         <constructor-arg name="productoService"     ref="productoService" />
     </bean>
 
-    
+
     <!--     TRANSLATORS             -->
 
     <bean id="itemTranslator"       class="ar.edu.uai.paradigms.translator.item.ItemTranslator" />

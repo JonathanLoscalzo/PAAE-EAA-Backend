@@ -2,6 +2,7 @@ package ar.edu.uai.model.producto;
 
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.lote.Lote;
+import ar.edu.uai.model.proveedor.Proveedor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -31,6 +32,10 @@ public class Producto extends Model<Integer> {
     private Collection<Lote> lotes;
 
 
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name="PROVEEDOR_ID")
+    private Proveedor proveedor;
+
     public Collection<Lote> getLotes()
     {
         return lotes;
@@ -39,11 +44,12 @@ public class Producto extends Model<Integer> {
     public Producto() {
     }
 
-    public Producto(Integer SKU, String nombre, Integer minimo, Integer cantidad) {
+    public Producto(Integer SKU, String nombre, Integer minimo, Integer cantidad, Proveedor proveedor) {
         this.SKU = SKU;
         this.nombre = nombre;
         this.minimo = minimo;
         this.cantidad = cantidad;
+        this.proveedor = proveedor;
     }
 
     @Override
@@ -62,9 +68,9 @@ public class Producto extends Model<Integer> {
         return cantidad;
     }
 
-
-
-
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
 
     @Override
     public String toString() {

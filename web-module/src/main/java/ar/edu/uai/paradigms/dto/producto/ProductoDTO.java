@@ -18,24 +18,28 @@ public class ProductoDTO extends DTO<Integer> {
     private String name;
     private Integer minimum;
     private Integer amount;
+    private Integer supplier_id;
 
     @JsonCreator
     public ProductoDTO (@JsonProperty("id") Integer id,
                         @JsonProperty("name") String name,
-                        @JsonProperty("minimum") Integer minimum)
+                        @JsonProperty("minimum") Integer minimum,
+                        @JsonProperty("supplier_id") Integer supplier_id)
     {
         this.id = id;
         this.name = name;
         this.minimum = minimum;
         this.amount = 0;
+        this.supplier_id = supplier_id;
     }
 
-    public ProductoDTO(Integer id, String name, Integer minimum, Integer amount)
+    public ProductoDTO(Integer id, String name, Integer minimum, Integer amount, Integer supplier_id)
     {
         this.id = id;
         this.name = name;
         this.minimum = minimum;
         this.amount = amount;
+        this.supplier_id = supplier_id;
     }
 
 
@@ -62,5 +66,9 @@ public class ProductoDTO extends DTO<Integer> {
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public Integer getSupplier_id() {
+        return supplier_id;
     }
 }

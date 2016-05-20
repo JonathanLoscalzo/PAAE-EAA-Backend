@@ -3,9 +3,11 @@ package ar.edu.uai.paradigms.controller.producto;
 
 import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.model.producto.ProductoCriteria;
+import ar.edu.uai.model.proveedor.Proveedor;
 import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
 import ar.edu.uai.paradigms.service.ProductoService;
+import ar.edu.uai.paradigms.service.ProveedorService;
 import ar.edu.uai.paradigms.translator.producto.ProductoTranslator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +29,17 @@ public class ProductoController {
             .getLogger(ProductoController.class);
 
     private ProductoService productoService;
-
+    private ProveedorService proveedorService;
     private ProductoTranslator productoTranslator;
 
-    public ProductoController( ProductoService productoService, ProductoTranslator productoTranslator) {
+    public ProductoController( ProductoService productoService,
+                               ProductoTranslator productoTranslator,
+                               ProveedorService proveedorService)
+    {
         super();
         this.productoService = productoService;
         this.productoTranslator = productoTranslator;
+        this.proveedorService = proveedorService;
     }
 
 
@@ -43,9 +49,10 @@ public class ProductoController {
     public ResponseEntity<ProductoDTO> create(@RequestBody ProductoDTO productoDTO) {
         LOGGER.debug("Received DTO: " + productoDTO);
 
-        Producto productoModel          = this.productoTranslator.translate(productoDTO);
-        Producto producto               = this.productoService.save(productoModel);
-        ProductoDTO productoDTOOutput   = this.productoTranslator.translateToDTO(producto);
+        Proveedor   proveedor           = this.proveedorService     .retrieve(productoDTO.getSupplier_id());
+        Producto    productoModel       = this.productoTranslator   .translate(productoDTO,proveedor);
+        Producto    producto            = this.productoService      .save(productoModel);
+        ProductoDTO productoDTOOutput   = this.productoTranslator   .translateToDTO(producto);
 
         return new ResponseEntity<ProductoDTO>(productoDTOOutput, HttpStatus.CREATED);
     }
