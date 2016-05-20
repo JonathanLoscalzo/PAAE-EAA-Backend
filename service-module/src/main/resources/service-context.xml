@@ -23,4 +23,8 @@
     <bean id="AutoService" class="ar.edu.uai.paradigms.service.impl.AutoServiceImpl">
         <constructor-arg ref="autoDAO"></constructor-arg>
     </bean>
+
+    <bean id="proveedorService" class="ar.edu.uai.paradigms.service.impl.ProveedorServiceImpl">
+        <constructor-arg ref="proveedorDAO"></constructor-arg>
+    </bean>
 </beans>
