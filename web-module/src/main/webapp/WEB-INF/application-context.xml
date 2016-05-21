@@ -101,6 +101,11 @@
         <constructor-arg name="productoService"     ref="productoService" />
     </bean>
 
+    <bean id="clienteController" class="ar.edu.uai.paradigms.controller.cliente.ClienteController" >
+        <constructor-arg name="clienteService"         ref="clienteService" />
+        <constructor-arg name="clienteTranslator"      ref="clienteTranslator" />
+    </bean>
+
 
     <!--     TRANSLATORS             -->
 
@@ -108,4 +113,5 @@
     <bean id="productoTranslator"   class="ar.edu.uai.paradigms.translator.producto.ProductoTranslator" />
     <bean id="proveedorTranslator"   class="ar.edu.uai.paradigms.translator.proveedor.ProveedorTranslator" />
     <bean id="loteTranslator"   class="ar.edu.uai.paradigms.translator.lote.LoteTranslator" />
+    <bean id="clienteTranslator"   class="ar.edu.uai.paradigms.translator.cliente.ClienteTranslator" />
 </beans>

@@ -27,4 +27,8 @@
     <bean id="proveedorService" class="ar.edu.uai.paradigms.service.impl.ProveedorServiceImpl">
         <constructor-arg ref="proveedorDAO"></constructor-arg>
     </bean>
+
+    <bean id="clienteService" class="ar.edu.uai.paradigms.service.impl.ClienteServiceImpl">
+        <constructor-arg ref="clienteDAO"></constructor-arg>
+    </bean>
 </beans>

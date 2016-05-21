@@ -47,20 +47,13 @@ public class LoteController {
     public ResponseEntity<LoteDTO> create(@RequestBody LoteDTO loteDTO,
                                           @PathVariable Integer productID) {
         //LOGGER.debug("Received DTO: " + loteDTO);
-        LOGGER.error("###############################################################");
-        LOGGER.error("###############################################################");
+
         Producto prod = productoService.retrieve(productID);
 
-        LOGGER.error("###############################################################");
+
         Lote loteModel          = this.loteTranslator.translate(loteDTO, prod);
 
-        LOGGER.error("###############################################################");
-
-        LOGGER.error("Unidades totales: " + loteModel.getUnidadesTotales());
-        LOGGER.error("Unidades restantes: " + loteModel.getUnidadesRestantes());
-
-        LOGGER.error("###############################################################");
-        LOGGER.error("###############################################################");
+        
         Lote lote               = this.loteService.save(loteModel);
         LoteDTO loteDTOOutput   = this.loteTranslator.translateToDTO(lote,prod);
 

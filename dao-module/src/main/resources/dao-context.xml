@@ -13,15 +13,6 @@
         </property>
     </bean>
 
-    <bean id="personDAO" class="ar.edu.uai.paradigms.dao.PersonDAO" />
-
-    <bean id="itemDAO" class="ar.edu.uai.paradigms.dao.ItemDAO" />
-    <bean id="loteDAO" class="ar.edu.uai.paradigms.dao.LoteDAO" />
-    <bean id="productoDAO" class="ar.edu.uai.paradigms.dao.ProductoDAO" />
-    <bean id="proveedorDAO" class="ar.edu.uai.paradigms.dao.ProveedorDAO" />
-
-    <bean id="autoDAO" class="ar.edu.uai.paradigms.dao.AutoDAO" />
-
 
     <!-- DataSource -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" lazy-init="true" destroy-method="close">
@@ -89,5 +80,17 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <!--     DAOS             -->
+
+    <bean id="personDAO" class="ar.edu.uai.paradigms.dao.PersonDAO" />
+
+    <bean id="itemDAO" class="ar.edu.uai.paradigms.dao.ItemDAO" />
+    <bean id="loteDAO" class="ar.edu.uai.paradigms.dao.LoteDAO" />
+    <bean id="productoDAO" class="ar.edu.uai.paradigms.dao.ProductoDAO" />
+    <bean id="proveedorDAO" class="ar.edu.uai.paradigms.dao.ProveedorDAO" />
+    <bean id="clienteDAO" class="ar.edu.uai.paradigms.dao.ClienteDAO" />
+    <bean id="autoDAO" class="ar.edu.uai.paradigms.dao.AutoDAO" />
 
 </beans>
