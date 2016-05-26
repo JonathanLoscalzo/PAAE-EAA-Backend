@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dao;
 
 import ar.edu.uai.model.cliente.Cliente;
 import ar.edu.uai.model.cliente.ClienteCriteria;
+import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

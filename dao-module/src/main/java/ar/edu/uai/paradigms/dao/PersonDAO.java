@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dao;
 
 import ar.edu.uai.model.person.Person;
 import ar.edu.uai.model.person.PersonCriteria;
+import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -2,7 +2,7 @@ package ar.edu.uai.paradigms.service.impl;
 
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.Generics.ModelCriteria;
-import ar.edu.uai.paradigms.dao.PersistentDAO;
+import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
 import ar.edu.uai.paradigms.service.Service;
 import org.springframework.transaction.annotation.Transactional;
 

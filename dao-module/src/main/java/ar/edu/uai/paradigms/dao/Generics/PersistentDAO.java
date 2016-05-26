@@ -1,4 +1,4 @@
-package ar.edu.uai.paradigms.dao;
+package ar.edu.uai.paradigms.dao.Generics;
 
 import java.util.List;
 

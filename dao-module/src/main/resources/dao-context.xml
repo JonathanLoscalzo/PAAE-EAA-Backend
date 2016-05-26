@@ -6,8 +6,7 @@
        http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/tx         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <bean
-            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
             <value>classpath:config.properties</value>
         </property>
@@ -83,14 +82,14 @@
 
 
     <!--     DAOS             -->
-
+    <bean id="GenericDao" class="ar.edu.uai.paradigms.dao.Generics.GenericDAO" abstract="true"></bean>
     <bean id="personDAO" class="ar.edu.uai.paradigms.dao.PersonDAO" />
-
     <bean id="itemDAO" class="ar.edu.uai.paradigms.dao.ItemDAO" />
     <bean id="loteDAO" class="ar.edu.uai.paradigms.dao.LoteDAO" />
     <bean id="productoDAO" class="ar.edu.uai.paradigms.dao.ProductoDAO" />
     <bean id="proveedorDAO" class="ar.edu.uai.paradigms.dao.ProveedorDAO" />
     <bean id="clienteDAO" class="ar.edu.uai.paradigms.dao.ClienteDAO" />
-    <bean id="autoDAO" class="ar.edu.uai.paradigms.dao.AutoDAO" />
-
+    <bean id="ventaDAO" class="ar.edu.uai.paradigms.dao.VentaDAO"></bean>
+    <bean id="ventaDetalleDAO" class="ar.edu.uai.paradigms.dao.VentaDetalleDAO"></bean>
+    <bean id="formaPagoDao" class="ar.edu.uai.paradigms.dao.FormaPagoDAO"></bean>
 </beans>

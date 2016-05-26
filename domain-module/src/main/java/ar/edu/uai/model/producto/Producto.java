@@ -1,6 +1,7 @@
 package ar.edu.uai.model.producto;
 
 import ar.edu.uai.model.Generics.Model;
+import ar.edu.uai.model.ventaDetalle.VentaDetalle;
 import ar.edu.uai.model.lote.Lote;
 import ar.edu.uai.model.proveedor.Proveedor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -35,6 +36,9 @@ public class Producto extends Model<Integer> {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name="PROVEEDOR_ID")
     private Proveedor proveedor;
+
+    @OneToMany
+    private Collection<VentaDetalle> lineasFactura;
 
     public Collection<Lote> getLotes()
     {

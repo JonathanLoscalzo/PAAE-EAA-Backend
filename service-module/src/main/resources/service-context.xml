@@ -20,10 +20,6 @@
         <constructor-arg ref="productoDAO" />
     </bean>
 
-    <bean id="AutoService" class="ar.edu.uai.paradigms.service.impl.AutoServiceImpl">
-        <constructor-arg ref="autoDAO"></constructor-arg>
-    </bean>
-
     <bean id="proveedorService" class="ar.edu.uai.paradigms.service.impl.ProveedorServiceImpl">
         <constructor-arg ref="proveedorDAO"></constructor-arg>
     </bean>
@@ -31,4 +27,19 @@
     <bean id="clienteService" class="ar.edu.uai.paradigms.service.impl.ClienteServiceImpl">
         <constructor-arg ref="clienteDAO"></constructor-arg>
     </bean>
+
+    <bean id="ventaDetalleService" class="ar.edu.uai.paradigms.service.impl.VentaDetalleServiceImpl">
+        <constructor-arg ref="ventaDetalleDAO"></constructor-arg>
+    </bean>
+
+    <bean id="ventaService" class="ar.edu.uai.paradigms.service.impl.VentaServiceImpl">
+        <constructor-arg ref="ventaDAO"></constructor-arg>
+        <property name="ventaDetalleService" ref="ventaDetalleService"></property>
+        <property name="formaPagoService" ref="formaPagoService"></property>
+    </bean>
+
+    <bean id="formaPagoService" class="ar.edu.uai.paradigms.service.impl.FormaPagoServiceImpl">
+        <constructor-arg ref="formaPagoDao"></constructor-arg>
+    </bean>
+
 </beans>

@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 @Aspect
 public class LoggingAspect {
 
-    @Before("execution(* ar.edu.uai.paradigms.dao.PersistentDAO.retrieve(..))")
+    @Before("execution(* ar.edu.uai.paradigms.dao.Generics.PersistentDAO.retrieve(..))")
     public void auditDatabase(JoinPoint joinPoint) {
         Logger LOGGER = LoggerFactory.getLogger(joinPoint.getTarget().getClass());
         LOGGER.info("About to retrieve from database with parameters: {" + StringUtils.arrayToCommaDelimitedString(joinPoint.getArgs()) + "}");

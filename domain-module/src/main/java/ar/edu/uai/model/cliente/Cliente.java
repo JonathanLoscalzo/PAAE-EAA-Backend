@@ -1,8 +1,10 @@
 package ar.edu.uai.model.cliente;
 
 import ar.edu.uai.model.Generics.Model;
+import ar.edu.uai.model.venta.Venta;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Skeith on 20/05/2016.
@@ -26,6 +28,9 @@ public class Cliente extends Model<Integer>
 
     @Column(name = "DNI", nullable = false)
     private Integer dni;
+
+    @OneToMany
+    private Collection<Venta> ventas;
 
     public Cliente(){}
     public Cliente(Integer id, Integer dni, String nombre, String apellido) {

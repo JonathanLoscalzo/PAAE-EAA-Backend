@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by jloscalzo on 19/04/16.
  */
-public abstract class TranslatorImpl<ViewModel extends DTO, BusinessModel extends Model> implements Translator {
+public abstract class TranslatorImpl<ViewModel extends DTO, BusinessModel extends Model> implements Translator <ViewModel , BusinessModel>{
 
     public abstract BusinessModel translate(ViewModel dto) ;
 
