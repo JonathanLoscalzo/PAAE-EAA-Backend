@@ -18,7 +18,6 @@ public class Controller {
 
     public Controller(Service service, Translator<DTO, Model> translator){
         this.service = service;
-
         this.translator = translator;
     }
 }

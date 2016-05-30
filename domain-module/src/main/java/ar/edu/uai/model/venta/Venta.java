@@ -25,7 +25,7 @@ public class Venta extends Model {
     }
 
     @Override
-    protected Object getId() {
+    public Integer getId() {
         return this.id;
     }
 

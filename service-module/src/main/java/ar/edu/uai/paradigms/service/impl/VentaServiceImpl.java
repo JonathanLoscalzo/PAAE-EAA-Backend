@@ -26,4 +26,5 @@ public class VentaServiceImpl extends ServiceImpl<Venta,Integer> implements Vent
     public void setFormaPagoService(FormaPagoService formaPagoService) {
         this.formaPagoService = formaPagoService;
     }
+
 }

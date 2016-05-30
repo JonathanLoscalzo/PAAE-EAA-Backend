@@ -13,19 +13,24 @@ import java.util.List;
  * Created by jloscalzo on 26/05/16.
  */
 public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
-    @Override
-    public List translateToDTO(List autos) {
-        return null;
-    }
 
     @Override
     public Venta translate(VentaDTO dto) {
-        return null;
+        Venta v = new Venta();
+        v.setNro(dto.nro);
+        v.setFecha(dto.fecha);
+
+        return v;
     }
 
     @Override
-    public VentaDTO translateToDTO(Venta auto) {
-        return null;
+    public VentaDTO translateToDTO(Venta v) {
+        VentaDTO dto = new VentaDTO();
+        dto.fecha = v.getFecha();
+        dto.nro = v.getNro();
+        dto.id = v.getId();
+
+        return dto;
     }
 
     @Override

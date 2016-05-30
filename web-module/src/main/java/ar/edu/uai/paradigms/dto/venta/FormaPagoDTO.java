@@ -10,4 +10,7 @@ public class FormaPagoDTO extends DTO<Integer> {
     protected Integer getId() {
         return null;
     }
+    private String nombre;
+
+    private Boolean permiteDarCambio;
 }

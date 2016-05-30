@@ -120,7 +120,9 @@
     <bean id="proveedorTranslator"   class="ar.edu.uai.paradigms.translator.proveedor.ProveedorTranslator" />
     <bean id="loteTranslator"   class="ar.edu.uai.paradigms.translator.lote.LoteTranslator" />
     <bean id="clienteTranslator"   class="ar.edu.uai.paradigms.translator.cliente.ClienteTranslator" />
-    <bean id="ventaTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaTranslator"></bean>
+    <bean id="ventaTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaTranslator">
+        <!-- NECESITO AGREGAR LOS DOS DE ABajo -->
+    </bean>
     <bean id="ventaDetalleTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaDetalleTranslator"></bean>
     <bean id="formaPagoTranslator" class="ar.edu.uai.paradigms.translator.venta.FormaPagoTranslator"></bean>
 
