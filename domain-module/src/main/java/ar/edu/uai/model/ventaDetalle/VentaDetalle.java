@@ -3,6 +3,7 @@ package ar.edu.uai.model.ventaDetalle;
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.model.producto.Producto;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.persistence.AccessType;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "VENTA_DETALLE")
 @Access(AccessType.FIELD)
-public class VentaDetalle extends Model {
+public class VentaDetalle extends Model<Integer> {
 
     public VentaDetalle() {
     }
@@ -31,10 +32,11 @@ public class VentaDetalle extends Model {
     @Column(name="FILA")
     private Integer fila;
 
-    @ManyToOne
+    @ManyToOne //TODO: ver el cascade type
     private Producto producto;
 
     @ManyToOne
+    @JoinColumn(name="VENTA_ID")
     private Venta venta;
 
     @Column(name="CANTIDAD")
@@ -44,7 +46,7 @@ public class VentaDetalle extends Model {
     private Double precio;
 
     @Override
-    protected Object getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -86,5 +88,9 @@ public class VentaDetalle extends Model {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

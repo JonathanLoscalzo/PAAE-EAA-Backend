@@ -43,14 +43,11 @@ public class Venta extends Model {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "venta")
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<VentaDetalle> detalles;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name="facturas_formas_pago",
-            joinColumns = @JoinColumn(name="VENTA_ID"),
-            inverseJoinColumns = @JoinColumn(name="FORMA_PAGO_ID"))
-    private Collection<FormaPago> formasPago;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Collection<VentaFormaPago> ventaFormasPago;
 
     public void setDetalles(Collection detalles) {
         this.detalles = detalles;
@@ -86,5 +83,13 @@ public class Venta extends Model {
 
     public Collection<VentaDetalle> getDetalles() {
         return detalles;
+    }
+
+    public Collection<VentaFormaPago> getVentaFormasPago() {
+        return ventaFormasPago;
+    }
+
+    public void setVentaFormasPago(Collection<VentaFormaPago> ventaFormasPago) {
+        this.ventaFormasPago = ventaFormasPago;
     }
 }

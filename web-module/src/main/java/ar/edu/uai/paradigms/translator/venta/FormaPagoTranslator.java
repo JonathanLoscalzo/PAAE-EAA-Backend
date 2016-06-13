@@ -6,25 +6,26 @@ import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.venta.FormaPagoDTO;
 import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 
-import java.util.List;
-
 /**
  * Created by jloscalzo on 26/05/16.
  */
 public class FormaPagoTranslator extends TranslatorImpl<FormaPagoDTO, FormaPago> {
     @Override
     public FormaPago translate(FormaPagoDTO dto) {
-        return null;
+        FormaPago fp = new FormaPago(dto.getNombre(), dto.getPermiteDarCambio());
+        fp.setId(dto.getId());
+
+        return fp;
     }
 
     @Override
-    public FormaPagoDTO translateToDTO(FormaPago auto) {
-        return null;
-    }
+    public FormaPagoDTO translateToDTO(FormaPago fp) {
+        FormaPagoDTO fpdto = new FormaPagoDTO();
+        fpdto.setId(fp.getId());
+        fpdto.setNombre(fp.getNombre());
+        fpdto.setPermiteDarCambio(fp.getPermiteDarCambio());
 
-    @Override
-    public List<FormaPagoDTO> translateToDTO(List<FormaPago> autos) {
-        return null;
+        return fpdto;
     }
 
     @Override

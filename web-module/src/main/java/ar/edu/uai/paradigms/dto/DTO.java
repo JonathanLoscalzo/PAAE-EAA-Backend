@@ -12,7 +12,7 @@ public abstract class DTO<I extends Serializable> {
         return this.getClass().getSimpleName() + " [id=" + this.getId() + "]";
     }
 
-    protected abstract I getId();
+    public abstract I getId();
 
     protected Collection<String> messageErrors;
 

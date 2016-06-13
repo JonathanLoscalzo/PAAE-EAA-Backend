@@ -1,11 +1,15 @@
 package ar.edu.uai.paradigms.translator.producto;
 
 
+import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.model.producto.ProductoCriteria;
 import ar.edu.uai.model.proveedor.Proveedor;
+import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
+import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
+import ar.edu.uai.paradigms.translator.proveedor.ProveedorTranslator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +17,9 @@ import java.util.List;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class ProductoTranslator
+public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto>
 {
+    private ProveedorTranslator proveedorTranslator;
     public Producto translate(ProductoDTO productoDTO, Proveedor proveedor)
     {
         return new Producto (productoDTO.getId(),
@@ -22,6 +27,15 @@ public class ProductoTranslator
                             productoDTO.getMinimum(),
                             productoDTO.getAmount(),
                             proveedor);
+    }
+
+    public Producto translate(ProductoDTO productoDTO)
+    {
+        return new Producto (productoDTO.getId(),
+                productoDTO.getName(),
+                productoDTO.getMinimum(),
+                productoDTO.getAmount(),
+                null/*proveedorTranslator.translate()*/);
     }
 
     public ProductoDTO translateToDTO(Producto producto)
@@ -34,6 +48,11 @@ public class ProductoTranslator
                     producto.getCantidad(),
                     producto.getProveedor().getId());
         }
+        return null;
+    }
+
+    @Override
+    public ModelCriteria translateCriteria(DTO autoCriteriaDTO) {
         return null;
     }
 
@@ -50,5 +69,9 @@ public class ProductoTranslator
 
     public ProductoCriteria translateCriteria(ProductoCriteriaDTO productoCriteriaDTO) {
         return new ProductoCriteria();
+    }
+
+    public void setProveedorTranslator(ProveedorTranslator proveedorTranslator) {
+        this.proveedorTranslator = proveedorTranslator;
     }
 }
