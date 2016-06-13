@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "VENTA")
 @Access(AccessType.FIELD)
 public class Venta extends Model {
-
+//TODO Falta vendedor
     public Venta() {
 
     }

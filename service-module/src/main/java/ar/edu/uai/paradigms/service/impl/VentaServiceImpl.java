@@ -2,7 +2,6 @@ package ar.edu.uai.paradigms.service.impl;
 
 import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
-import ar.edu.uai.paradigms.dao.VentaDAO;
 import ar.edu.uai.paradigms.service.FormaPagoService;
 import ar.edu.uai.paradigms.service.VentaDetalleService;
 import ar.edu.uai.paradigms.service.VentaService;
@@ -12,8 +11,8 @@ import ar.edu.uai.paradigms.service.VentaService;
  */
 public class VentaServiceImpl extends ServiceImpl<Venta,Integer> implements VentaService {
 
-    public VentaDetalleService ventaDetalleService;
-    public FormaPagoService formaPagoService;
+    private VentaDetalleService ventaDetalleService;
+    private FormaPagoService formaPagoService;
 
     public VentaServiceImpl(PersistentDAO dao){
         super(dao);
@@ -26,5 +25,4 @@ public class VentaServiceImpl extends ServiceImpl<Venta,Integer> implements Vent
     public void setFormaPagoService(FormaPagoService formaPagoService) {
         this.formaPagoService = formaPagoService;
     }
-
 }

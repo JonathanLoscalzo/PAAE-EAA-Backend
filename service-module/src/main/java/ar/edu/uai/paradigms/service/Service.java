@@ -16,4 +16,6 @@ public interface Service<Entity extends Model, Identity>{
     void delete(Identity identifier);
 
     List<Entity> retrieveByCriteria(ModelCriteria criteria);
+
+    Boolean validateModel(Entity e);
 }

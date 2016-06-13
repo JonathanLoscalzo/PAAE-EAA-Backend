@@ -18,7 +18,12 @@ public abstract class ServiceImpl<Entity extends Model, Identifier> implements S
 
     @Transactional
     public Entity save(Entity entity) {
-        return (Entity) this.dao.create(entity);
+        if (validateModel(entity)){
+            return (Entity) this.dao.create(entity);
+        }
+
+        return entity;
+
     }
 
     public Entity retrieve(Identifier identifier) {
@@ -32,5 +37,10 @@ public abstract class ServiceImpl<Entity extends Model, Identifier> implements S
 
     public List<Entity> retrieveByCriteria(ModelCriteria criteriaEntity) {
         return this.dao.retrieveByCriteria(criteriaEntity);
+    }
+
+    @Override
+    public Boolean validateModel(Entity e) {
+        return Boolean.TRUE;
     }
 }
