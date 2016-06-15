@@ -92,4 +92,5 @@
     <bean id="ventaDAO" class="ar.edu.uai.paradigms.dao.VentaDAO"></bean>
     <bean id="ventaDetalleDAO" class="ar.edu.uai.paradigms.dao.VentaDetalleDAO"></bean>
     <bean id="formaPagoDao" class="ar.edu.uai.paradigms.dao.FormaPagoDAO"></bean>
+    <bean id="usuarioDAO" class="ar.edu.uai.paradigms.dao.UsuarioDAO" />
 </beans>

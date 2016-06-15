@@ -117,6 +117,11 @@
         <constructor-arg name="translator" ref="formaPagoTranslator" />
     </bean>
 
+    <bean id="usuarioController" class="ar.edu.uai.paradigms.controller.usuario.UsuarioController" >
+        <constructor-arg name="usuarioService"         ref="usuarioService" />
+        <constructor-arg name="usuarioTranslator"         ref="usuarioTranslator" />
+    </bean>
+
 
     <!--     TRANSLATORS             -->
 
@@ -137,5 +142,7 @@
         <property name="formaPagoTranslator" ref="formaPagoTranslator"></property>
         <property name="ventaTranslator" ref="ventaTranslator"></property>
     </bean>
+    <bean id="usuarioTranslator" class="ar.edu.uai.paradigms.translator.usuario.UsuarioTranslator" />
+
 
 </beans>

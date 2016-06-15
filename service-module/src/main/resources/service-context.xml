@@ -41,4 +41,7 @@
         <constructor-arg ref="formaPagoDao"></constructor-arg>
     </bean>
 
+    <bean id="usuarioService" class="ar.edu.uai.paradigms.service.impl.UsuarioServiceImpl">
+        <constructor-arg ref="usuarioDAO"></constructor-arg>
+    </bean>
 </beans>
