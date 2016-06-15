@@ -27,13 +27,13 @@
     </sec:http>
 
     <sec:authentication-manager alias="authenticationManager">
-        <sec:authentication-provider ref="simpleAuthenticationProvider"/>
+        <!--<sec:authentication-provider ref="simpleAuthenticationProvider"/>-->
     </sec:authentication-manager>
 
     <bean id="customFilter"
     class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
         <property name="authenticationManager" ref="authenticationManager"/>
-        <property name="authenticationSuccessHandler" ref="successHandler"/>
+        <property   name="authenticationSuccessHandler" ref="successHandler"/>
         <property name="authenticationFailureHandler" ref="failureHandler"/>
         <property name="passwordParameter" value="password"/>
         <property name="usernameParameter" value="username"/>
@@ -122,20 +122,20 @@
 
     <bean id="itemTranslator"       class="ar.edu.uai.paradigms.translator.item.ItemTranslator" />
     <bean id="productoTranslator"   class="ar.edu.uai.paradigms.translator.producto.ProductoTranslator" >
-        <property name="proveedorTranslator" ref="proveedorTranslator"></property>
+        <property name="proveedorTranslator" ref="proveedorTranslator"/>
     </bean>
     <bean id="proveedorTranslator"   class="ar.edu.uai.paradigms.translator.proveedor.ProveedorTranslator" />
     <bean id="loteTranslator"   class="ar.edu.uai.paradigms.translator.lote.LoteTranslator" />
     <bean id="clienteTranslator"   class="ar.edu.uai.paradigms.translator.cliente.ClienteTranslator" />
     <bean id="ventaTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaTranslator">
-        <property name="ventaDetalleTranslator" ref="ventaDetalleTranslator"></property>
-        <property name="ventaFormaPagoTranslator" ref ="ventaFormaPagoTranslator"></property>
+        <property name="ventaDetalleTranslator" ref="ventaDetalleTranslator"/>
+        <property name="ventaFormaPagoTranslator" ref="ventaFormaPagoTranslator"/>
     </bean>
-    <bean id="ventaDetalleTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaDetalleTranslator"></bean>
-    <bean id="formaPagoTranslator" class="ar.edu.uai.paradigms.translator.venta.FormaPagoTranslator"></bean>
+    <bean id="ventaDetalleTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaDetalleTranslator"/>
+    <bean id="formaPagoTranslator" class="ar.edu.uai.paradigms.translator.venta.FormaPagoTranslator"/>
     <bean id="ventaFormaPagoTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaFormaPagoTranslator">
-        <property name="formaPagoTranslator" ref="formaPagoTranslator"></property>
-        <property name="ventaTranslator" ref="ventaTranslator"></property>
+        <property name="formaPagoTranslator" ref="formaPagoTranslator"/>
+        <property name="ventaTranslator" ref="ventaTranslator"/>
     </bean>
 
 </beans>
