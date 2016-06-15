@@ -108,8 +108,8 @@
     <bean id="ventaController" class="ar.edu.uai.paradigms.controller.venta.VentaController">
         <constructor-arg name="service"  ref="ventaService" />
         <constructor-arg name="translator" ref="ventaTranslator" />
-        <property name="ventaDetalleService" ref="ventaDetalleService"></property>
-        <property name="formaPagoService" ref="formaPagoService"></property>
+        <property name="ventaDetalleService" ref="ventaDetalleService"/>
+        <property name="formaPagoService" ref="formaPagoService"/>
     </bean>
 
     <bean id="formaPagoController" class="ar.edu.uai.paradigms.controller.venta.FormaPagoController">
