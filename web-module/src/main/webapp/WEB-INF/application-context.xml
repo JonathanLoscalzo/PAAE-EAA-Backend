@@ -27,7 +27,7 @@
     </sec:http>
 
     <sec:authentication-manager alias="authenticationManager">
-        <!--<sec:authentication-provider ref="simpleAuthenticationProvider"/>-->
+        <sec:authentication-provider ref="simpleAuthenticationProvider"/>
     </sec:authentication-manager>
 
     <bean id="customFilter"
