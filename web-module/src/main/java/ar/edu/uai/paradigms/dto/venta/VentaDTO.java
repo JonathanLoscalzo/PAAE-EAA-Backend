@@ -19,7 +19,7 @@ public class VentaDTO extends DTO<Integer> {
     private Date fecha;
 
     @JsonProperty("nro")
-    private int nro;
+    private Integer nro;
 
     @JsonProperty("cliente")
     private ClienteDTO cliente;

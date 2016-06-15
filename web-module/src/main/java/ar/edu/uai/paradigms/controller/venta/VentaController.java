@@ -43,19 +43,6 @@ public class VentaController extends Controller {
         this.ventaDetalleService = ventaDetalleService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    public
-    @ResponseBody
-    ResponseEntity<DTO> create(@RequestBody VentaDTO ventaDTO) {
-        Venta ventaB = (Venta) this.translator.translate(ventaDTO);
-        Venta ventaP = (Venta) this.service.save(ventaB);
-        DTO ventaDTOOutput = (VentaDTO) this.translator.translateToDTO(ventaP);
-        return new ResponseEntity<>(ventaDTOOutput, HttpStatus.CREATED);
-    }
-
-
-
-
     /*
     * Que debería tener este controller
     * GenerarFactura ( VentaDTO ) a partir de una venta genera una factura

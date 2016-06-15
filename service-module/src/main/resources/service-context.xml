@@ -34,7 +34,6 @@
 
     <bean id="ventaService" class="ar.edu.uai.paradigms.service.impl.VentaServiceImpl">
         <constructor-arg ref="ventaDAO"></constructor-arg>
-        <property name="ventaDetalleService" ref="ventaDetalleService"></property>
         <property name="formaPagoService" ref="formaPagoService"></property>
     </bean>
 

@@ -6,4 +6,7 @@ import ar.edu.uai.model.formaPago.FormaPago;
  * Created by jloscalzo on 25/05/16.
  */
 public interface FormaPagoService extends Service<FormaPago,Integer> {
+    boolean couldDiscount(Integer id, Double cantidad);
+
+    void discount(Integer id, Double cantidad);
 }

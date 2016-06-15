@@ -14,4 +14,14 @@ public class FormaPagoServiceImpl extends ServiceImpl<FormaPago, Integer> implem
     public FormaPagoServiceImpl(PersistentDAO dao) {
         super(dao);
     }
+
+    @Override
+    public boolean couldDiscount(Integer id, Double cantidad) {
+        return false;
+    }
+
+    @Override
+    public void discount(Integer id, Double cantidad) {
+
+    }
 }

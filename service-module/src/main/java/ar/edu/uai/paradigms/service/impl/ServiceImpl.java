@@ -7,6 +7,8 @@ import ar.edu.uai.paradigms.service.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Created by jloscalzo on 14/04/16.

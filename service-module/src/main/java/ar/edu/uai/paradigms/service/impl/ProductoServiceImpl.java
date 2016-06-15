@@ -21,4 +21,29 @@ public class ProductoServiceImpl extends ServiceImpl<Producto,Integer> implement
     }
 
 
+    @Override
+    public boolean hasStock(Integer id_producto, Integer cantidad) {
+        return true;
+    }
+
+    @Override
+    public boolean exist(Integer id) {
+        return dao.retrieve(id) != null;
+    }
+
+
+
+    @Override
+    public void discount(Integer id, Integer cantidad) {
+        Producto retrieve = (Producto) dao.retrieve(id);
+        //TODO actualizar cantidad;
+        dao.update(retrieve);
+    }
+
+    @Override
+    public void restore(Integer id, Integer cantidad) {
+        Producto retrieve = (Producto) dao.retrieve(id);
+        //TODO actualizar cantidad;
+        dao.update(retrieve);
+    }
 }
