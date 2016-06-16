@@ -15,7 +15,6 @@ public class ClienteDTO extends DTO<Number>
     private String last_name;
     private Integer dni;
 
-    @JsonCreator
     public ClienteDTO ( @JsonProperty("id") Integer id,
                         @JsonProperty("dni") Integer dni,
                         @JsonProperty("first_name") String first_name,

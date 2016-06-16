@@ -115,7 +115,7 @@
     <bean id="formaPagoController" class="ar.edu.uai.paradigms.controller.venta.FormaPagoController">
         <constructor-arg name="service"  ref="formaPagoService" />
         <constructor-arg name="translator" ref="formaPagoTranslator" />
-    </bean>
+    </bean> 
 
     <bean id="usuarioController" class="ar.edu.uai.paradigms.controller.usuario.UsuarioController" >
         <constructor-arg name="usuarioService"         ref="usuarioService" />
