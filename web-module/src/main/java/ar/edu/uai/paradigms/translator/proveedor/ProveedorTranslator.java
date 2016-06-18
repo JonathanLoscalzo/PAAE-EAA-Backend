@@ -1,10 +1,14 @@
 package ar.edu.uai.paradigms.translator.proveedor;
 
+import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.proveedor.Proveedor;
 
 import ar.edu.uai.model.proveedor.ProveedorCriteria;
+import ar.edu.uai.paradigms.dto.CriteriaDTO;
+import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.proveedor.ProveedorCriteriaDTO;
 import ar.edu.uai.paradigms.dto.proveedor.ProveedorDTO;
+import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +16,7 @@ import java.util.List;
 /**
  * Created by Skeith on 19/05/2016.
  */
-public class ProveedorTranslator
+public class ProveedorTranslator extends TranslatorImpl<ProveedorDTO, Proveedor>
 {
     public Proveedor translate(ProveedorDTO proveedorDTO)
     {
@@ -32,6 +36,15 @@ public class ProveedorTranslator
         return null;
     }
 
+    @Override
+    public ModelCriteria translateCriteria(CriteriaDTO<ProveedorDTO> modelCriteria) {
+        return this.translateCriteria((ProveedorCriteriaDTO) modelCriteria);
+    }
+
+    public ModelCriteria translateCriteria(ProveedorCriteriaDTO modelCriteria){
+        return new ProveedorCriteria();
+    };
+
     public List<ProveedorDTO> translateToDTO(List<Proveedor> proovedores) {
         List<ProveedorDTO> proveedorResponse = new ArrayList<ProveedorDTO>();
         for(Proveedor i : proovedores) {
@@ -41,9 +54,5 @@ public class ProveedorTranslator
             }
         }
         return proveedorResponse;
-    }
-
-    public ProveedorCriteria translateCriteria(ProveedorCriteriaDTO proveedorCriteriaDTO) {
-        return new ProveedorCriteria();
     }
 }

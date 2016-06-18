@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.translator.Generics;
 
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.Generics.ModelCriteria;
+import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.DTO;
 
 import java.util.Collection;
@@ -25,5 +26,6 @@ public abstract class TranslatorImpl<ViewModel extends DTO, BusinessModel extend
         return bsmodels.stream().map(dto -> translateToDTO(dto)).collect(Collectors.<ViewModel>toList());
     }
 
-    public abstract ModelCriteria translateCriteria(DTO autoCriteriaDTO);
+    @Deprecated
+    public abstract ModelCriteria translateCriteria(CriteriaDTO<ViewModel> modelCriteria);
 }

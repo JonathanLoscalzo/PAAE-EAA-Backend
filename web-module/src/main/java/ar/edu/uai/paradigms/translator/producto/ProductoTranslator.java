@@ -5,6 +5,7 @@ import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.model.producto.ProductoCriteria;
 import ar.edu.uai.model.proveedor.Proveedor;
+import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
@@ -31,11 +32,13 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto>
 
     public Producto translate(ProductoDTO productoDTO)
     {
+        Proveedor p = new Proveedor();
+
         return new Producto (productoDTO.getId(),
                 productoDTO.getName(),
                 productoDTO.getMinimum(),
                 productoDTO.getAmount(),
-                null/*proveedorTranslator.translate()*/);
+                p/*proveedorTranslator.translate()*/);
     }
 
     public ProductoDTO translateToDTO(Producto producto)
@@ -52,8 +55,8 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto>
     }
 
     @Override
-    public ModelCriteria translateCriteria(DTO autoCriteriaDTO) {
-        return null;
+    public ModelCriteria translateCriteria(CriteriaDTO<ProductoDTO> modelCriteria) {
+        return new ProductoCriteria();
     }
 
     public List<ProductoDTO> translateToDTO(List<Producto> productos) {
@@ -65,10 +68,6 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto>
             }
         }
         return productoResponse;
-    }
-
-    public ProductoCriteria translateCriteria(ProductoCriteriaDTO productoCriteriaDTO) {
-        return new ProductoCriteria();
     }
 
     public void setProveedorTranslator(ProveedorTranslator proveedorTranslator) {

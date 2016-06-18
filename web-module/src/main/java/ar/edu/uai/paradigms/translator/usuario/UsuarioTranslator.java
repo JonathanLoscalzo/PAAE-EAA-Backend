@@ -1,9 +1,12 @@
 package ar.edu.uai.paradigms.translator.usuario;
 
+import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.usuario.Usuario;
 import ar.edu.uai.model.usuario.UsuarioCriteria;
+import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.usuario.UsuarioCriteriaDTO;
 import ar.edu.uai.paradigms.dto.usuario.UsuarioDTO;
+import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +14,7 @@ import java.util.List;
 /**
  * Created by Skeith on 15/06/2016.
  */
-public class UsuarioTranslator {
+public class UsuarioTranslator extends TranslatorImpl<UsuarioDTO, Usuario>{
     public Usuario translate(UsuarioDTO usuarioDTO)
     {
         return new Usuario (usuarioDTO.getId(),
@@ -28,6 +31,11 @@ public class UsuarioTranslator {
                     usuario.getPassword());
         }
         return null;
+    }
+
+    @Override
+    public ModelCriteria translateCriteria(CriteriaDTO<UsuarioDTO> modelCriteria) {
+        return new UsuarioCriteria();
     }
 
     public List<UsuarioDTO> translateToDTO(List<Usuario> usuarios) {
