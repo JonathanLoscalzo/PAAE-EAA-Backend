@@ -1,11 +1,7 @@
 package ar.edu.uai.paradigms.controller.Generics;
 
 import ar.edu.uai.model.Generics.Model;
-import ar.edu.uai.model.person.Person;
-import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.paradigms.dto.DTO;
-import ar.edu.uai.paradigms.dto.person.PersonDTO;
-import ar.edu.uai.paradigms.dto.venta.VentaDTO;
 import ar.edu.uai.paradigms.service.Service;
 import ar.edu.uai.paradigms.translator.Generics.Translator;
 import org.slf4j.Logger;
@@ -18,14 +14,13 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by jloscalzo on 19/04/16.
  */
-@org.springframework.stereotype.Controller
-public abstract class Controller {
-    protected static final Logger LOGGER = LoggerFactory.getLogger(Controller.class.getName());
+public abstract class BaseController {
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class.getName());
 
     protected Service service;
     protected Translator<DTO, Model> translator;
 
-    public Controller(Service service, Translator<DTO, Model> translator){
+    public BaseController(Service service, Translator<DTO, Model> translator){
         this.service = service;
         this.translator = translator;
     }
