@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ProveedorDTO implements DTO<Integer> {
     private Integer id;
-
     private String name;
     private String product_request_url;
 
@@ -24,20 +23,16 @@ public class ProveedorDTO implements DTO<Integer> {
 
     }
 
-    @Override
+
     public Integer getId()
     {
         return id;
     }
-
-
     @Override
     public String toString()
     {
         return this.getClass().getSimpleName() + " [id=" + id + ", nombre=" + name + "]";
     }
-
-
     public String getName()
     {
         return name;
