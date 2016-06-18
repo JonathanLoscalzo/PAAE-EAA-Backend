@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Skeith on 19/05/2016.
  */
-public class ProveedorDTO extends DTO<Integer> {
+public class ProveedorDTO{
     private Integer id;
 
     private String name;
@@ -24,7 +24,7 @@ public class ProveedorDTO extends DTO<Integer> {
 
     }
 
-    @Override
+
     public Integer getId()
     {
         return id;
