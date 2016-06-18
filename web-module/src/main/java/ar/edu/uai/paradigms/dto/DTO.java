@@ -6,15 +6,9 @@ import java.util.Collection;
 /**
  * Created by jloscalzo on 19/04/16.
  */
-public abstract class DTO<I extends Serializable> {
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + " [id=" + this.getId() + "]";
-    }
+public interface DTO<I extends Serializable> {
+    public String toString();
 
     public abstract I getId();
 
-    protected Collection<String> messageErrors;
-
-    protected boolean HasError = 0 < messageErrors.size();
 }

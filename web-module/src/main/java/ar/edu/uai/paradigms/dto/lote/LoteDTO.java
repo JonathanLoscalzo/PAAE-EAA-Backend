@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class LoteDTO extends DTO<Integer>
+public class LoteDTO implements DTO<Integer>
 {
 
     private Integer     id;

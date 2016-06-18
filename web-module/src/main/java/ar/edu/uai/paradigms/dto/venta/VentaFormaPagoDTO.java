@@ -12,7 +12,7 @@ import javax.persistence.*;
 /**
  * Created by jloscalzo on 12/06/16.
  */
-public class VentaFormaPagoDTO extends DTO<Integer> {
+public class VentaFormaPagoDTO implements DTO<Integer> {
 
     private Double cantidad;
 

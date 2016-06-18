@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Skeith on 20/05/2016.
  */
-public class ClienteDTO extends DTO<Number>
+public class ClienteDTO implements DTO<Integer>
 {
     private Integer id;
 
