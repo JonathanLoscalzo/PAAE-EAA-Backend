@@ -42,6 +42,6 @@ public class UsuarioTranslator {
     }
 
     public UsuarioCriteria translateCriteria(UsuarioCriteriaDTO usuarioCriteriaDTO) {
-        return new UsuarioCriteria();
+        return new UsuarioCriteria("admin");
     }
 }

@@ -7,10 +7,12 @@ import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,5 +52,16 @@ public class UsuarioDAO implements PersistentDAO<Usuario, Integer, UsuarioCriter
 
         TypedQuery<Usuario> typedQuery = entityManager.createQuery(query);
         return typedQuery.getResultList();
+
+
+    }
+
+    public List<Usuario> retrieveByUsername(String username) {
+
+        //sql injection a morir jajaj
+        String query_string = "from Usuario u where u.username='" +username+"'";
+        TypedQuery<Usuario> q = entityManager.createQuery(query_string, Usuario.class);
+
+        return q.getResultList();
     }
 }

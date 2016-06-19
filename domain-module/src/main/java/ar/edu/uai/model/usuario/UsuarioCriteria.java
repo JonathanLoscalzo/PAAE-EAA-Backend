@@ -9,6 +9,19 @@ public class UsuarioCriteria extends ModelCriteria<Integer> {
 
     @Override
     protected Integer getId() {
-        return 0;
+        return getId();
+    }
+
+    private String username;
+
+
+    public UsuarioCriteria(String username) {
+        this.username = username;
+
+    }
+
+
+    public String getUsername() {
+        return username;
     }
 }

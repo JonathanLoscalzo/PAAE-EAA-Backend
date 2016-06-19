@@ -8,6 +8,11 @@
     <logger name="ar.edu.uai.paradigms.controllers" level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
+
+    <logger name="ar.edu.uai.paradigms.authentication" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
     <logger name="org" level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
