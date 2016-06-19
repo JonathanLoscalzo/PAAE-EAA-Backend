@@ -7,9 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Skeith on 19/05/2016.
  */
-public class ProveedorDTO{
+public class ProveedorDTO implements DTO<Integer> {
     private Integer id;
-
     private String name;
     private String product_request_url;
 
@@ -29,15 +28,11 @@ public class ProveedorDTO{
     {
         return id;
     }
-
-
     @Override
     public String toString()
     {
         return this.getClass().getSimpleName() + " [id=" + id + ", nombre=" + name + "]";
     }
-
-
     public String getName()
     {
         return name;

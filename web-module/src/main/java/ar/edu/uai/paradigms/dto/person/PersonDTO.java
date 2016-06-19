@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Federico Donnarumma on 10/15/14.
  */
-public class PersonDTO extends DTO<Number> {
+public class PersonDTO implements DTO<Number> {
 
     private Integer id;
 

@@ -92,12 +92,12 @@
     <bean id="productoController" class="ar.edu.uai.paradigms.controller.producto.ProductoController" >
         <constructor-arg name="productoService"     ref="productoService" />
         <constructor-arg name="productoTranslator"  ref="productoTranslator" />
-        <constructor-arg name="proveedorService"    ref="proveedorService" />
+        <property name="proveedorService" ref="proveedorService"/>
     </bean>
 
     <bean id="proveedorController" class="ar.edu.uai.paradigms.controller.proveedor.ProveedorController" >
-        <constructor-arg name="proveedorService"     ref="proveedorService" />
-        <constructor-arg name="proveedorTranslator"  ref="proveedorTranslator" />
+        <constructor-arg name="service"     ref="proveedorService" />
+        <constructor-arg name="translator"  ref="proveedorTranslator" />
     </bean>
 
     <bean id="loteController" class="ar.edu.uai.paradigms.controller.lote.LoteController" >

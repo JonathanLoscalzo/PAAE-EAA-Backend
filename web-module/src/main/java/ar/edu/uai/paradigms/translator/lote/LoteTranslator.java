@@ -1,10 +1,13 @@
 package ar.edu.uai.paradigms.translator.lote;
 
+import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.lote.Lote;
 import ar.edu.uai.model.lote.LoteCriteria;
 import ar.edu.uai.model.producto.Producto;
+import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.lote.LoteCriteriaDTO;
 import ar.edu.uai.paradigms.dto.lote.LoteDTO;
+import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +16,7 @@ import java.util.List;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class LoteTranslator
+public class LoteTranslator extends TranslatorImpl<LoteDTO, Lote>
 {
     public Lote translate(LoteDTO loteDTO, Producto prod)
     {
@@ -57,5 +60,20 @@ public class LoteTranslator
     public LoteCriteria translateCriteria(LoteCriteriaDTO loteCriteriaDTO)
     {
         return new LoteCriteria();
+    }
+
+    @Override
+    public Lote translate(LoteDTO dto) {
+        return null;
+    }
+
+    @Override
+    public LoteDTO translateToDTO(Lote bsmodels) {
+        return null;
+    }
+
+    @Override
+    public ModelCriteria translateCriteria(CriteriaDTO<LoteDTO> modelCriteria) {
+        return null;
     }
 }

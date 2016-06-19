@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by jloscalzo on 26/05/16.
  */
-public class FormaPagoDTO extends DTO<Integer> {
+public class FormaPagoDTO implements DTO<Integer> {
 
     @JsonProperty
     private String nombre;

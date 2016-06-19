@@ -1,9 +1,10 @@
 package ar.edu.uai.paradigms.controller.producto;
 
 
+import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.producto.Producto;
-import ar.edu.uai.model.producto.ProductoCriteria;
 import ar.edu.uai.model.proveedor.Proveedor;
+import ar.edu.uai.paradigms.controller.Generics.BaseController;
 import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
 import ar.edu.uai.paradigms.service.ProductoService;
@@ -16,77 +17,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * Created by Hal on 18/04/2016.
  */
 @Controller
 @RequestMapping("/products")
-public class ProductoController {
+public class ProductoController extends BaseController<ProductoDTO, ProductoCriteriaDTO> {
 
     private static final Logger LOGGER = LoggerFactory
             .getLogger(ProductoController.class);
 
-    private ProductoService productoService;
     private ProveedorService proveedorService;
-    private ProductoTranslator productoTranslator;
 
-    public ProductoController( ProductoService productoService,
-                               ProductoTranslator productoTranslator,
-                               ProveedorService proveedorService)
-    {
-        super();
-        this.productoService = productoService;
-        this.productoTranslator = productoTranslator;
+    public void setProveedorService(ProveedorService proveedorService) {
         this.proveedorService = proveedorService;
     }
 
+    public ProductoController( ProductoService productoService,
+                               ProductoTranslator productoTranslator)
+    {
+        super(productoService, productoTranslator);
+    }
 
-
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    public ResponseEntity<ProductoDTO> create(@RequestBody ProductoDTO productoDTO) {
+    protected ResponseEntity<ProductoDTO> createHook(ProductoDTO productoDTO) {
         LOGGER.debug("Received DTO: " + productoDTO);
 
         Proveedor   proveedor           = this.proveedorService     .retrieve(productoDTO.getSupplier_id());
-        Producto    productoModel       = this.productoTranslator   .translate(productoDTO,proveedor);
-        Producto    producto            = this.productoService      .save(productoModel);
-        ProductoDTO productoDTOOutput   = this.productoTranslator   .translateToDTO(producto);
+        Producto    productoModel       = (Producto) ((ProductoTranslator)translator).translate(productoDTO, proveedor);
+        Producto    producto            = (Producto) this.service      .save(productoModel);
+        ProductoDTO productoDTOOutput   = (ProductoDTO) this.translator   .translateToDTO(producto);
 
         return new ResponseEntity<ProductoDTO>(productoDTOOutput, HttpStatus.CREATED);
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public
-    @ResponseBody
-    ResponseEntity<List<ProductoDTO>> retrieveByCriteria(ProductoCriteriaDTO productoCriteria) {
-        LOGGER.debug("Received QUERY: " + productoCriteria);
-
-        ProductoCriteria criteria           = this.productoTranslator.translateCriteria(productoCriteria);
-        List<Producto> productos            = this.productoService.retrieveByCriteria(criteria);
-        List<ProductoDTO> productosDTOs     = this.productoTranslator.translateToDTO(productos);
-
-        return new ResponseEntity<List<ProductoDTO>>(productosDTOs, HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/{identifier}")
-    public
-    @ResponseBody
-    ResponseEntity<ProductoDTO> getProduct(@PathVariable Integer identifier) throws InterruptedException {
-        Producto retrievedProduct = this.productoService.retrieve(identifier);
-        ProductoDTO product = this.productoTranslator.translateToDTO(retrievedProduct);
-        if (product != null) {
-            return new ResponseEntity<ProductoDTO>(product, HttpStatus.OK);
-        }
-        return new ResponseEntity<ProductoDTO>(HttpStatus.NO_CONTENT);
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{identifier}")
-    public
-    @ResponseBody
-    ResponseEntity<String> delete(@PathVariable Integer identifier) {
-        this.productoService.delete(identifier);
-        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 }

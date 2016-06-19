@@ -3,6 +3,8 @@ package ar.edu.uai.paradigms.controller.venta;
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.paradigms.controller.Generics.BaseController;
 import ar.edu.uai.paradigms.dto.DTO;
+import ar.edu.uai.paradigms.dto.venta.VentaDTO;
+import ar.edu.uai.paradigms.dto.venta.criterias.VentaCriteriaDTO;
 import ar.edu.uai.paradigms.service.FormaPagoService;
 import ar.edu.uai.paradigms.service.Service;
 import ar.edu.uai.paradigms.service.VentaDetalleService;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/Venta")
-public class VentaController extends BaseController {
+public class VentaController extends BaseController<VentaDTO, VentaCriteriaDTO> {
     private VentaDetalleService ventaDetalleService;
     private FormaPagoService formaPagoService;
 

@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class ProductoDTO extends DTO<Integer> {
+public class ProductoDTO implements DTO<Integer> {
     private Integer id;
 
     private String name;

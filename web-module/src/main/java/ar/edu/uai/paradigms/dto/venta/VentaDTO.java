@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by jloscalzo on 26/05/16.
  */
-public class VentaDTO extends DTO<Integer> {
+public class VentaDTO implements DTO<Integer> {
 
     @JsonProperty("id")
     private Integer id;

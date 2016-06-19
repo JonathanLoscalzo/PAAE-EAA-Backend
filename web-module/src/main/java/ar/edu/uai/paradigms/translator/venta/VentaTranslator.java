@@ -3,6 +3,7 @@ package ar.edu.uai.paradigms.translator.venta;
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.venta.Venta;
+import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.venta.VentaDTO;
 import ar.edu.uai.paradigms.dto.venta.VentaFormaPagoDTO;
@@ -39,7 +40,7 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
     }
 
     @Override
-    public ModelCriteria translateCriteria(DTO autoCriteriaDTO) {
+    public ModelCriteria translateCriteria(CriteriaDTO<VentaDTO> modelCriteria) {
         return null;
     }
 

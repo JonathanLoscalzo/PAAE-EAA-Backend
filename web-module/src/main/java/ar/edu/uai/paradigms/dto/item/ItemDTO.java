@@ -10,7 +10,7 @@ package ar.edu.uai.paradigms.dto.item;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class ItemDTO extends DTO<Integer> {
+public class ItemDTO implements DTO<Integer> {
     private Integer id;
 
     private String name;
