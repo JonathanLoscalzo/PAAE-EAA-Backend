@@ -14,10 +14,11 @@ public class UsuarioCriteria extends ModelCriteria<Integer> {
 
     private String username;
 
+    public UsuarioCriteria() {
+    }
 
     public UsuarioCriteria(String username) {
         this.username = username;
-
     }
 
 

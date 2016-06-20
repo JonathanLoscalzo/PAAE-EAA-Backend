@@ -27,13 +27,6 @@ public class ProductoServiceImpl extends ServiceImpl<Producto,Integer> implement
     }
 
     @Override
-    public boolean exist(Integer id) {
-        return dao.retrieve(id) != null;
-    }
-
-
-
-    @Override
     public void discount(Integer id, Integer cantidad) {
         Producto retrieve = (Producto) dao.retrieve(id);
         //TODO actualizar cantidad;

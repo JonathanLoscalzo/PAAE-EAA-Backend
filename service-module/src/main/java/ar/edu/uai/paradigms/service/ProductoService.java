@@ -10,10 +10,7 @@ import java.util.List;
  */
 public interface ProductoService extends Service<Producto,Integer>
 {
-
     boolean hasStock(Integer id, Integer cantidad);
-
-    boolean exist(Integer id);
 
     void discount(Integer id, Integer cantidad);
 
