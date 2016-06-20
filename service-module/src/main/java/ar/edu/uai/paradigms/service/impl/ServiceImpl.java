@@ -25,7 +25,6 @@ public abstract class ServiceImpl<Entity extends Model, Identifier> implements S
         }
 
         return entity;
-
     }
 
     public Entity retrieve(Identifier identifier) {
@@ -44,5 +43,9 @@ public abstract class ServiceImpl<Entity extends Model, Identifier> implements S
     @Override
     public Boolean validateModel(Entity e) {
         return Boolean.TRUE;
+    }
+
+    public Boolean exist(Identifier id) {
+        return this.retrieve(id) != null;
     }
 }

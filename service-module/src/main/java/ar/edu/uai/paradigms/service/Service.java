@@ -11,6 +11,8 @@ import java.util.List;
 public interface Service<Entity extends Model, Identity>{
     Entity save(Entity entity);
 
+    Boolean exist(Integer id);
+
     Entity retrieve(Identity identifier);
 
     void delete(Identity identifier);

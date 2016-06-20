@@ -33,12 +33,4 @@ public class VentaController extends BaseController<VentaDTO, VentaCriteriaDTO> 
     public void setVentaDetalleService(VentaDetalleService ventaDetalleService) {
         this.ventaDetalleService = ventaDetalleService;
     }
-
-    /*
-    * Que debería tener este controller
-    * GenerarFactura ( VentaDTO ) a partir de una venta genera una factura
-    * FacturaVacia ( cliente, vendedor) crea una factura vacía y la retorna con las formas de pago correspondientes
-    * EliminarFactura (id)
-    *
-    * */
 }

@@ -19,7 +19,7 @@ public abstract class Model<Identifier> {
         return 0 < messageErrors.size();
     }
 
-    protected void addMessage (String message){
+    public void addMessage (String message){
         // TODO: Acá puedo cambiar, y agregar un objeto error que tenga fecha, excepciones, codigo, etc
         messageErrors.add(message);
     }
