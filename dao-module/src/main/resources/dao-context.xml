@@ -17,7 +17,7 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" lazy-init="true" destroy-method="close">
         <!--<property name="connectionCustomizerClassName" value="com.despegar.bookedia.persistence.dao.base.IsolationLevelC3POCustomizer" />-->
         <property name="driverClass" value="${ar.edu.uai.persistence.jdbc.driver}" />
-        <property name="jdbcUrl" value="|" />
+        <property name="jdbcUrl" value="${ar.edu.uai.persistence.jdbc.url}" />
         <property name="user" value="${ar.edu.uai.persistence.jdbc.user}" />
         <property name="password" value="${ar.edu.uai.persistence.jdbc.password}" />
 
