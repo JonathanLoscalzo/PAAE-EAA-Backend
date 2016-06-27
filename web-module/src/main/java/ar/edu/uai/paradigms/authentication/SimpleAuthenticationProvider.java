@@ -35,38 +35,39 @@ public class SimpleAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication)
     {
 
-        LOGGER.error("#########################################################");
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        List<Usuario> usuarios = usuarioService.retrieveByUsername(name);
-        boolean existe_y_tiene_permisos=false;
-
-        if(usuarios.size()>0)
-        {
-            LOGGER.error("existe");
-
-            Usuario u = usuarios.get(0);
-            if(u.getPassword().equals(password))
-            {
-                LOGGER.error("y tiene permisos");
-
-                existe_y_tiene_permisos=true;
-            }
-        }
-
-        LOGGER.error("#########################################################");
+        Usuario usuario = getUsuario(name,password);
 
 
-        if ( (name.equals("admin") && password.equals("admin")) ||
-              existe_y_tiene_permisos)
+        if ( usuario != null)
         {
             List<GrantedAuthority> grants = new ArrayList();
-            grants.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            grants.add(new SimpleGrantedAuthority(usuario.getRole()));
             return new UsernamePasswordAuthenticationToken(name, password, grants);
         } else {
             return null;
         }
+    }
+
+    Usuario getUsuario(String username, String password)
+    {
+        Usuario u = null;
+        List<Usuario> usuarios = usuarioService.retrieveByUsername(username);
+        if(usuarios.size()>0)
+        {
+            u = usuarios.get(0);
+        }
+        else
+        {
+            if(username.equals("admin") && password.equals("admin")){
+                // usuariotodopoderosoquenoexiste xD
+                u = new Usuario(-1,"admin","admin","ROLE_ADMIN");
+            }
+        }
+        // si el usuario no existe ni es admin, retornamos null
+        return u;
     }
 
     @Override

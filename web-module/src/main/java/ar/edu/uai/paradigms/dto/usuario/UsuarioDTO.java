@@ -12,15 +12,18 @@ public class UsuarioDTO implements DTO<Integer>
     private Integer id;
     private String username;
     private String password;
+    private String role;
 
     @JsonCreator
     public UsuarioDTO ( @JsonProperty("id") Integer id,
                         @JsonProperty("username") String username,
-                        @JsonProperty("password") String password)
+                        @JsonProperty("password") String password,
+                        @JsonProperty("role") String role)
     {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
 
     }
 
@@ -36,4 +39,6 @@ public class UsuarioDTO implements DTO<Integer>
     public String getPassword() {
         return password;
     }
+
+    public String getRole() { return role;}
 }

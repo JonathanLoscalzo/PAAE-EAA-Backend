@@ -26,12 +26,16 @@ public class Usuario extends Model<Integer>
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
+    @Column(name = "ROLE", nullable = false)
+    private String role;
+
 
     public Usuario(){}
-    public Usuario(Integer id, String username, String password) {
+    public Usuario(Integer id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -45,4 +49,6 @@ public class Usuario extends Model<Integer>
     public String getUsername() {
         return username;
     }
+
+    public String getRole(){ return  role;}
 }

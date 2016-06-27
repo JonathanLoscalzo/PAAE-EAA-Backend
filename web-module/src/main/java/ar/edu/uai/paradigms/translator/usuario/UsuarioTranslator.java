@@ -19,7 +19,8 @@ public class UsuarioTranslator extends TranslatorImpl<UsuarioDTO, Usuario>{
     {
         return new Usuario (usuarioDTO.getId(),
                 usuarioDTO.getUsername(),
-                usuarioDTO.getPassword());
+                usuarioDTO.getPassword(),
+                usuarioDTO.getRole());
     }
 
     public UsuarioDTO translateToDTO(Usuario usuario)
@@ -28,7 +29,8 @@ public class UsuarioTranslator extends TranslatorImpl<UsuarioDTO, Usuario>{
         {
             return new UsuarioDTO( usuario.getId(),
                     usuario.getUsername(),
-                    usuario.getPassword());
+                    usuario.getPassword(),
+                    usuario.getRole());
         }
         return null;
     }
