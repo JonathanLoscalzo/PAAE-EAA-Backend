@@ -21,10 +21,18 @@
     <context:annotation-config/>
 
     <sec:http entry-point-ref="restAuthenticationEntryPoint">
+        <sec:intercept-url pattern="/users"                 access="ROLE_ADMIN, ROLE_EMPLOYEE"/>
+        <sec:intercept-url pattern="/clients"               access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/products"              access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/products/*/batches"    access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/suppliers"             access="ROLE_ADMIN"/>
+
         <sec:intercept-url pattern="/**" access="ROLE_ADMIN"/>
+
         <sec:custom-filter ref="customFilter" position="FORM_LOGIN_FILTER"/>
         <sec:logout/>
     </sec:http>
+
 
     <sec:authentication-manager alias="authenticationManager">
         <sec:authentication-provider ref="simpleAuthenticationProvider"/>

@@ -44,6 +44,11 @@ public class SimpleAuthenticationProvider implements AuthenticationProvider {
         if ( usuario != null)
         {
             List<GrantedAuthority> grants = new ArrayList();
+            LOGGER.error("###########################################################");
+            LOGGER.error(usuario.getUsername());
+            LOGGER.error(usuario.getRole());
+            LOGGER.error("###########################################################");
+
             grants.add(new SimpleGrantedAuthority(usuario.getRole()));
             return new UsernamePasswordAuthenticationToken(name, password, grants);
         } else {
@@ -62,8 +67,10 @@ public class SimpleAuthenticationProvider implements AuthenticationProvider {
         else
         {
             if(username.equals("admin") && password.equals("admin")){
-                // usuariotodopoderosoquenoexiste xD
                 u = new Usuario(-1,"admin","admin","ROLE_ADMIN");
+            }
+            if(username.equals("pepe") && password.equals("pepe")){
+                u = new Usuario(-1,"pepe","pepe","ROLE_EMPLOYEE");
             }
         }
         // si el usuario no existe ni es admin, retornamos null
