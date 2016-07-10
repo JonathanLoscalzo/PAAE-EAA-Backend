@@ -46,13 +46,11 @@ public class LoteController {
     @ResponseBody
     public ResponseEntity<LoteDTO> create(@RequestBody LoteDTO loteDTO,
                                           @PathVariable Integer productID) {
-        //LOGGER.debug("Received DTO: " + loteDTO);
 
         Producto prod = productoService.retrieve(productID);
 
 
         Lote loteModel          = this.loteTranslator.translate(loteDTO, prod);
-
 
         Lote lote               = this.loteService.save(loteModel);
         LoteDTO loteDTOOutput   = this.loteTranslator.translateToDTO(lote,prod);
@@ -90,5 +88,20 @@ public class LoteController {
     public ResponseEntity<String> delete(@PathVariable Integer batchID) {
         this.loteService.delete(batchID);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{batchID}/consume/{amount}")
+    @ResponseBody
+    public ResponseEntity<LoteDTO> consumeProductUnit(@PathVariable Integer productID,
+                                                      @PathVariable Integer batchID,
+                                                      @PathVariable Integer amount) throws InterruptedException
+    {
+
+
+        Lote retrievedLote  = this.loteService.retrieve(batchID);
+        loteService.consumeUnits(retrievedLote,amount);
+
+        return new ResponseEntity<LoteDTO>(HttpStatus.NO_CONTENT);
     }
 }

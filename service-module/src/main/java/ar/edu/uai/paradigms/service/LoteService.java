@@ -11,5 +11,6 @@ import java.util.List;
 public interface LoteService extends Service<Lote,Integer>
 {
 
+    void consumeUnits(Lote lote, int amount);
 
 }

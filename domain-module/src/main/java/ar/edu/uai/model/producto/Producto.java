@@ -7,6 +7,7 @@ import ar.edu.uai.model.proveedor.Proveedor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -25,8 +26,6 @@ public class Producto extends Model<Integer> {
     @Column(name = "MINIMO", nullable = false)
     private Integer minimo;
 
-    @Column(name = "CANTIDAD", nullable = false)
-    private Integer cantidad;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy="producto", cascade=CascadeType.ALL)
     @JsonManagedReference
@@ -58,6 +57,8 @@ public class Producto extends Model<Integer> {
     public int getCurrentUnits()
     {
         int units = 0;
+
+
         for(Lote l : lotes)
         {
             units+= l.getUnidadesRestantes();
@@ -67,12 +68,12 @@ public class Producto extends Model<Integer> {
     public Producto() {
     }
 
-    public Producto(Integer SKU, String nombre, Integer minimo, Integer cantidad, Proveedor proveedor) {
+    public Producto(Integer SKU, String nombre, Integer minimo, Proveedor proveedor) {
         this.SKU = SKU;
         this.nombre = nombre;
         this.minimo = minimo;
-        this.cantidad = cantidad;
         this.proveedor = proveedor;
+        lotes = new ArrayList<>();
     }
 
     @Override
@@ -87,9 +88,6 @@ public class Producto extends Model<Integer> {
     public Integer getMinimo() {
         return minimo;
     }
-    public  Integer getCantidad() {
-        return cantidad;
-    }
 
     public Proveedor getProveedor() {
         return proveedor;
@@ -100,6 +98,6 @@ public class Producto extends Model<Integer> {
         return this.getClass().getSimpleName() + " [id=" + SKU +
                 ", nombre=" + nombre +
                 ", minimo=" + minimo +
-                ", cantidad= " + cantidad +"]";
+                ", cantidad= " +"]";
     }
 }

@@ -58,6 +58,13 @@ public class Lote extends Model<Integer> {
         this.unidadesTotales = unidadesTotales;
     }
 
+    public void consumirUnidades( int cant)
+    {
+        unidadesRestantes -= cant;
+        if(unidadesRestantes < 0) //Math.clamp quien te conoce
+            unidadesRestantes = 0;
+    }
+
     @Override
     public Integer getId() {
         return id;

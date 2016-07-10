@@ -20,5 +20,17 @@ public class LoteServiceImpl extends ServiceImpl<Lote,Integer> implements LoteSe
         this.loteDAO = loteDAO;
     }
 
+    @Transactional
+    public void consumeUnits(Lote lote, int amount)
+    {
+        lote.consumirUnidades(amount);
+        loteDAO.update(lote);
+    }
+
+    public void consumeUnits(int loteID, int amount)
+    {
+        consumeUnits(loteDAO.retrieve(loteID),amount);
+    }
+
 
 }
