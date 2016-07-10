@@ -3,8 +3,6 @@ package ar.edu.uai.paradigms.controller.lote;
 import ar.edu.uai.model.lote.Lote;
 import ar.edu.uai.model.lote.LoteCriteria;
 import ar.edu.uai.model.producto.Producto;
-import ar.edu.uai.paradigms.controller.Generics.BaseController;
-import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.lote.LoteCriteriaDTO;
 import ar.edu.uai.paradigms.dto.lote.LoteDTO;
 import ar.edu.uai.paradigms.service.LoteService;
@@ -17,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -25,52 +22,73 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/products/{productID}/batches")
-public class LoteController extends BaseController<LoteDTO, LoteCriteriaDTO>{
+public class LoteController {
 
     private static final Logger LOGGER = LoggerFactory
             .getLogger(LoteController.class);
+
+    private LoteService loteService;
     private ProductoService productoService;
+
+    private LoteTranslator loteTranslator;
 
     public LoteController( LoteService loteService, LoteTranslator loteTranslator, ProductoService productoService)
     {
-        super(loteService, loteTranslator);
+        super();
+        this.loteService = loteService;
+        this.loteTranslator = loteTranslator;
         this.productoService = productoService;
     }
 
-    @Override
-    protected ResponseEntity<LoteDTO> createHook(@RequestBody LoteDTO dto) {
-        Producto prod = productoService.retrieve(dto.getProduct_id());
-        Lote loteModel          = ((LoteTranslator)this.translator).translate(dto, prod);
-        Lote lote               = (Lote) this.service.save(loteModel);
-        LoteDTO loteDTOOutput   = ((LoteTranslator)this.translator).translateToDTO(lote,prod);
 
-        return new ResponseEntity<LoteDTO>(loteDTOOutput, HttpStatus.CREATED);
-    }
 
-    //TODO enviar el productID dentro del loteDTO (como producto y proveedor)
-    @RequestMapping(value="/new", method = RequestMethod.POST, consumes = "application/json")
-    public
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    ResponseEntity<LoteDTO> create(@RequestBody LoteDTO loteDTO,
+    public ResponseEntity<LoteDTO> create(@RequestBody LoteDTO loteDTO,
                                           @PathVariable Integer productID) {
+        //LOGGER.debug("Received DTO: " + loteDTO);
+
         Producto prod = productoService.retrieve(productID);
-        Lote loteModel          = ((LoteTranslator)this.translator).translate(loteDTO, prod);
-        Lote lote               = (Lote) this.service.save(loteModel);
-        LoteDTO loteDTOOutput   = ((LoteTranslator)this.translator).translateToDTO(lote,prod);
+
+
+        Lote loteModel          = this.loteTranslator.translate(loteDTO, prod);
+
+
+        Lote lote               = this.loteService.save(loteModel);
+        LoteDTO loteDTOOutput   = this.loteTranslator.translateToDTO(lote,prod);
+
         return new ResponseEntity<LoteDTO>(loteDTOOutput, HttpStatus.CREATED);
     }
 
-    //TODO ( no se puede meter ese productID dentro de criteria ? )
-    @RequestMapping(method = RequestMethod.GET, value = "/get/{batchID}")
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<LoteDTO>> retrieveByCriteria(LoteCriteriaDTO loteCriteria,
+                                                            @PathVariable Integer productID) {
+        LOGGER.debug("Received QUERY: " + loteCriteria);
+        Producto prod = productoService.retrieve(productID);
+
+        List<LoteDTO> lotesDTOs = this.loteTranslator.translateToDTO(prod.getLotes(),prod);
+        return new ResponseEntity<List<LoteDTO>>(lotesDTOs, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{batchID}")
     @ResponseBody
     public ResponseEntity<LoteDTO> getLote(@PathVariable Integer productID,
                                            @PathVariable Integer batchID) throws InterruptedException {
-        Lote retrievedLote  = (Lote) this.service.retrieve(batchID);
+        Lote retrievedLote  = this.loteService.retrieve(batchID);
         Producto prod       = this.productoService.retrieve(productID);
-        LoteDTO loteDTO = ((LoteTranslator)this.translator).translateToDTO(retrievedLote, prod);
+
+        LoteDTO loteDTO = this.loteTranslator.translateToDTO(retrievedLote, prod);
         if (loteDTO != null) {
             return new ResponseEntity<LoteDTO>(loteDTO, HttpStatus.OK);
         }
         return new ResponseEntity<LoteDTO>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{batchID}")
+    @ResponseBody
+    public ResponseEntity<String> delete(@PathVariable Integer batchID) {
+        this.loteService.delete(batchID);
+        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 }

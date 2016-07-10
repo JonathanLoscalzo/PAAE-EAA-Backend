@@ -15,4 +15,6 @@ public interface ProductoService extends Service<Producto,Integer>
     void discount(Integer id, Integer cantidad);
 
     void restore(Integer id, Integer cantidad);
+
+
 }

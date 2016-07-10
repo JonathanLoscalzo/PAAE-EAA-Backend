@@ -45,6 +45,25 @@ public class Producto extends Model<Integer> {
         return lotes;
     }
 
+    public int getTotalUnits()
+    {
+        int units = 0;
+        for(Lote l : lotes)
+        {
+            units+= l.getUnidadesTotales();
+        }
+        return units;
+    }
+
+    public int getCurrentUnits()
+    {
+        int units = 0;
+        for(Lote l : lotes)
+        {
+            units+= l.getUnidadesRestantes();
+        }
+        return units;
+    }
     public Producto() {
     }
 
