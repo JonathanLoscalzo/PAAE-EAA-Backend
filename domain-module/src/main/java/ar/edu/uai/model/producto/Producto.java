@@ -65,6 +65,14 @@ public class Producto extends Model<Integer> {
         }
         return units;
     }
+
+    public boolean porAgotarse()
+    {
+        if(getCurrentUnits() < minimo)
+            return true;
+
+        return false;
+    }
     public Producto() {
     }
 

@@ -9,9 +9,11 @@ import ar.edu.uai.paradigms.controller.Generics.BaseController;
 import ar.edu.uai.paradigms.dto.producto.ProductoConUnidadesDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
+import ar.edu.uai.paradigms.dto.producto.ProductoPorAgotarseDTO;
 import ar.edu.uai.paradigms.service.ProductoService;
 import ar.edu.uai.paradigms.service.ProveedorService;
 import ar.edu.uai.paradigms.translator.producto.ProductoConUnidadesTranslator;
+import ar.edu.uai.paradigms.translator.producto.ProductoPorAgotarseTranslator;
 import ar.edu.uai.paradigms.translator.producto.ProductoTranslator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,7 @@ public class ProductoController extends BaseController<ProductoDTO, ProductoCrit
 
     private ProveedorService proveedorService;
     private ProductoConUnidadesTranslator productoConUnidadesTranslator;
+    private ProductoPorAgotarseTranslator productoPorAgotarseTranslator;
 
     public void setProveedorService(ProveedorService proveedorService) {
         this.proveedorService = proveedorService;
@@ -41,9 +44,11 @@ public class ProductoController extends BaseController<ProductoDTO, ProductoCrit
 
     public ProductoController( ProductoService productoService,
                                ProductoTranslator productoTranslator,
-                               ProductoConUnidadesTranslator productoConUnidadesTranslator)
+                               ProductoConUnidadesTranslator productoConUnidadesTranslator,
+                               ProductoPorAgotarseTranslator productoPorAgotarseTranslator)
     {
         super(productoService, productoTranslator);
+        this.productoPorAgotarseTranslator = productoPorAgotarseTranslator;
         this.productoConUnidadesTranslator = productoConUnidadesTranslator;
     }
 
@@ -64,6 +69,15 @@ public class ProductoController extends BaseController<ProductoDTO, ProductoCrit
         List<Producto> prod = this.service.retrieveByCriteria(criteria);
 
         List<ProductoConUnidadesDTO> productosDTOs = this.productoConUnidadesTranslator.translateToDTO(prod);
+        return new ResponseEntity<>(productosDTOs, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/close_to_run_out")
+    @ResponseBody
+    public ResponseEntity<List<ProductoPorAgotarseDTO>> aboutToRunOut(ProductoCriteria criteria) {
+        List<Producto> prod = ((ProductoService)this.service).productsCloseToRunOut();
+
+        List<ProductoPorAgotarseDTO> productosDTOs = this.productoPorAgotarseTranslator.translateToDTO(prod);
         return new ResponseEntity<>(productosDTOs, HttpStatus.OK);
     }
 }

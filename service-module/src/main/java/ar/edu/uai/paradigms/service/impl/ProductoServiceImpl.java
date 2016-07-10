@@ -7,6 +7,7 @@ import ar.edu.uai.paradigms.dao.ProductoDAO;
 import ar.edu.uai.paradigms.service.ProductoService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +39,19 @@ public class ProductoServiceImpl extends ServiceImpl<Producto,Integer> implement
         Producto retrieve = (Producto) dao.retrieve(id);
         //TODO actualizar cantidad;
         dao.update(retrieve);
+    }
+
+
+    public List<Producto> productsCloseToRunOut()
+    {
+        List<Producto> productos = this.retrieveByCriteria(null);
+        List<Producto> productosPorAgotarse = new ArrayList<>();
+        for(Producto p : productos)
+        {
+            if(p.porAgotarse())
+                productosPorAgotarse.add(p);
+        }
+
+        return  productosPorAgotarse;
     }
 }

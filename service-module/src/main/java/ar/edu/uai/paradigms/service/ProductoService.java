@@ -16,5 +16,6 @@ public interface ProductoService extends Service<Producto,Integer>
 
     void restore(Integer id, Integer cantidad);
 
+    List<Producto> productsCloseToRunOut();
 
 }

@@ -47,12 +47,13 @@ public class VentaServiceImpl extends ServiceImpl<Venta,Integer> implements Vent
     @Override
     public Boolean validateModel(Venta v) {
         Boolean valid = false;
+
         List<VentaDetalle> hasNoStock = v.getDetalles()
                 .stream()
                 .filter(d -> productoService.exist(d.getProducto().getId()) && !productoService.hasStock(d.getProducto().getId(), d.getCantidad()))
                 .collect(Collectors.toList());
         if (hasNoStock.size() > 0 ){
-            hasNoStock.forEach(d -> v.addMessage("No tiene stock "+d.getProducto().getNombre()+" stock: "+d.getProducto().getCantidad()));
+            hasNoStock.forEach(d -> v.addMessage("No tiene stock "+d.getProducto().getNombre()+" stock: "+d.getProducto().getCurrentUnits()));
         }
 
         v.getDetalles().forEach(d -> productoService.discount(d.getProducto().getId(), d.getCantidad()));
