@@ -37,4 +37,11 @@ public class UsuarioController extends BaseController<UsuarioDTO, UsuarioCriteri
     {
         super(usuarioService, usuarioTranslator);
     }
+
+    /* Esto lo hice para que los tests de integracion fallen a proposito.
+    @Override
+    public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO dto) {
+        return null;
+    }*/
+
 }
