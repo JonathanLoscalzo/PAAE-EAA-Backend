@@ -71,7 +71,7 @@ public class SavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuth
                     break;
             case "ROLE_EMPLOYEE" :
                     menus =  "usuarios:/users";
-                    break; 
+                    break;
         }
 
         return menus;

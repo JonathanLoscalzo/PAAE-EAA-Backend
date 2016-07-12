@@ -29,6 +29,9 @@ public class Cliente extends Model<Integer>
     @Column(name = "DNI", nullable = false)
     private Integer dni;
 
+    @Column(name = "DELETED", nullable = false)
+    private Boolean deleted;
+
     @OneToMany
     private Collection<Venta> ventas;
 
@@ -38,8 +41,13 @@ public class Cliente extends Model<Integer>
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.deleted = false;
     }
 
+    public void delete()
+    {
+        deleted = true;
+    }
     public Integer getId() {
         return id;
     }
@@ -52,6 +60,7 @@ public class Cliente extends Model<Integer>
         return apellido;
     }
 
+    public Boolean getDeleted() { return deleted; }
     public Integer getDni() {
         return dni;
     }

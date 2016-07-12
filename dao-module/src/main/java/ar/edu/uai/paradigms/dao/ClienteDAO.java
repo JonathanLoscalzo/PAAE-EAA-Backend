@@ -38,17 +38,29 @@ public class ClienteDAO implements PersistentDAO<Cliente, Integer, ClienteCriter
 
     @Override
     public void delete(Integer id) {
-        this.entityManager.remove(this.retrieve(id));
+        Cliente c = this.retrieve(id);
+        c.delete();
+        this.update(c);
     }
 
     @Override
     public List<Cliente> retrieveByCriteria(ClienteCriteria clienteCriteria) {
+        /*
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Cliente> query = cb.createQuery(Cliente.class);
         Root<Cliente> cliente = query.from(Cliente.class);
-        query.select(cliente);
+
+        // intente agregarle el where para el deleted pero no pude, asiq lo pase a sql jaja
+        query.select(cliente).where(cb.equal(cliente.<~>get("deleted"), false);
+
 
         TypedQuery<Cliente> typedQuery = entityManager.createQuery(query);
-        return typedQuery.getResultList();
+        return typedQuery.getResultList();*/
+
+
+        String query_string = "from Cliente c where c.deleted='false'";
+        TypedQuery<Cliente> q = entityManager.createQuery(query_string, Cliente.class);
+
+        return q.getResultList();
     }
 }
