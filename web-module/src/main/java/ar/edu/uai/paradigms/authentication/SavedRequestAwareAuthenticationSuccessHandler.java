@@ -37,6 +37,7 @@ public class SavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuth
 
         Cookie credenciales = new Cookie("credenciales",permisos.get(0).getAuthority());
         response.addCookie(credenciales);
+        response.getWriter().write(getMenus(permisos.get(0).getAuthority()));
 
         if (savedRequest == null) {
             clearAuthenticationAttributes(request);
@@ -52,6 +53,28 @@ public class SavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuth
         }
 
         clearAuthenticationAttributes(request);
+    }
+
+    // no estoy orgulloso de esto
+    String getMenus(String authority)
+    {
+        String menus="";
+        switch(authority){
+            case "ROLE_ADMIN" :
+                    menus = "productos:/products;"+
+                            "proveedores:/suppliers;"+
+                            "clientes:/clients;"+
+                            "usuarios:/users;"+
+                            "estadisticas:/statistics/show;"+
+                            "alarmas:/alarms/show;"+
+                            "tests:/integration_tests/show";
+                    break;
+            case "ROLE_EMPLOYEE" :
+                    menus =  "usuarios:/users";
+                    break; 
+        }
+
+        return menus;
     }
 
 }
