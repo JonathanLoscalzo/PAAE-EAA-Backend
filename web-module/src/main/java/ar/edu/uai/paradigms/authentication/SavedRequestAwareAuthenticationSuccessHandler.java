@@ -62,6 +62,7 @@ public class SavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuth
         switch(authority){
             case "ROLE_ADMIN" :
                     menus = "productos:/products;"+
+                            "formas de pago:/payment_forms;"+
                             "proveedores:/suppliers;"+
                             "clientes:/clients;"+
                             "usuarios:/users;"+
