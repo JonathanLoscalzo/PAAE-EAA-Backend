@@ -28,9 +28,18 @@ public class VentaFormaPagoDTO implements DTO<Integer> {
                              @JsonProperty VentaDTO venta,
                              @JsonProperty Integer id) {
         this.cantidad = cantidad;
-        this.formaPago = formaPago;
+        this.formaPago = formaPago; //una forma de pago con ID solamente
         this.venta = venta;
         this.id = id;
+    }
+
+    @JsonCreator
+    public VentaFormaPagoDTO(@JsonProperty("cantidad") Double cantidad,
+                             @JsonProperty("formaPago") FormaPagoDTO formaPago,
+                             @JsonProperty VentaDTO venta) {
+        this.cantidad = cantidad;
+        this.formaPago = formaPago; //una forma de pago con ID solamente
+        this.venta = venta;
     }
 
     @Override

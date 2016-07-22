@@ -1,7 +1,6 @@
 package ar.edu.uai.paradigms.dto.venta;
 
 import ar.edu.uai.paradigms.dto.DTO;
-import ar.edu.uai.paradigms.translator.venta.FormaPagoTranslator;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,8 +19,17 @@ public class FormaPagoDTO implements DTO<Integer> {
     private Boolean permiteDarCambio;
 
     @JsonCreator
-    public FormaPagoDTO(){
+    public FormaPagoDTO(@JsonProperty String nombre,
+                        @JsonProperty Integer id,
+                        @JsonProperty Boolean permiteDarCambio) {
+        this.nombre = nombre;
+        this.id = id;
+        this.permiteDarCambio = permiteDarCambio;
+    }
 
+    @JsonCreator
+    public FormaPagoDTO(@JsonProperty Integer id) {
+        this.id = id;
     }
 
     public Boolean getPermiteDarCambio() {

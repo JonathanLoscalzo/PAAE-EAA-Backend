@@ -1,15 +1,11 @@
 package ar.edu.uai.paradigms.translator.venta;
 
-import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.paradigms.dto.CriteriaDTO;
-import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.venta.VentaDTO;
-import ar.edu.uai.paradigms.dto.venta.VentaFormaPagoDTO;
 import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
-
-import java.util.List;
+import ar.edu.uai.paradigms.translator.cliente.ClienteTranslator;
 
 /**
  * Created by jloscalzo on 26/05/16.
@@ -18,6 +14,7 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
 
     private VentaFormaPagoTranslator ventaFormaPagoTranslator;
     private VentaDetalleTranslator ventaDetalleTranslator;
+    private ClienteTranslator clienteTranslator;
 
     @Override
     public Venta translate(VentaDTO dto) {
@@ -25,18 +22,22 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
         v.setNro(dto.getNro());
         v.setFecha(dto.getFecha());
         v.setId(dto.getId());
+        v.setCliente(clienteTranslator.translate(dto.getCliente()));
+        v.setDetalles(ventaDetalleTranslator.translate(dto.getDetalles()));
         v.setVentaFormasPago(ventaFormaPagoTranslator.translate(dto.getFormasPago()));
         return v;
     }
 
     @Override
     public VentaDTO translateToDTO(Venta v) {
-        VentaDTO dto = new VentaDTO();
-        dto.setFecha(v.getFecha());
-        dto.setNro(v.getNro());
-        dto.setId(v.getId());
-        dto.setFormasPago(ventaFormaPagoTranslator.translateToDTO(v.getVentaFormasPago()));
-        return dto;
+        return new VentaDTO(
+                v.getId(),
+                v.getFecha(),
+                v.getNro(),
+                clienteTranslator.translateToDTO(v.getCliente()),
+                ventaDetalleTranslator.translateToDTO(v.getDetalles()),
+                ventaFormaPagoTranslator.translateToDTO(v.getVentaFormasPago())
+        );
     }
 
     @Override
@@ -50,5 +51,9 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
 
     public void setVentaDetalleTranslator(VentaDetalleTranslator ventaDetalleTranslator) {
         this.ventaDetalleTranslator = ventaDetalleTranslator;
+    }
+
+    public void setClienteTranslator(ClienteTranslator clienteTranslator) {
+        this.clienteTranslator = clienteTranslator;
     }
 }

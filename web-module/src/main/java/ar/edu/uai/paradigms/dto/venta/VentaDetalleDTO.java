@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dto.venta;
 
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -25,6 +26,34 @@ public class VentaDetalleDTO implements DTO<Integer> {
 
     @JsonProperty("precio")
     private Double precio;
+
+    @JsonCreator
+    public VentaDetalleDTO(@JsonProperty Integer id,
+                           @JsonProperty Integer fila,
+                           @JsonProperty ProductoDTO producto,
+                           @JsonProperty VentaDTO venta,
+                           @JsonProperty Integer cantidad,
+                           @JsonProperty Double precio) {
+        this.id = id;
+        this.fila = fila;
+        this.producto = producto;
+        this.venta = venta;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+
+    @JsonCreator
+    public VentaDetalleDTO(@JsonProperty Integer id,
+                           @JsonProperty Integer fila,
+                           @JsonProperty ProductoDTO producto,
+                           @JsonProperty Integer cantidad,
+                           @JsonProperty Double precio) {
+        this.id = id;
+        this.fila = fila;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
 
     @Override
     public Integer getId() {

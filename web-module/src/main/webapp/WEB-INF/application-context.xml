@@ -150,6 +150,7 @@
     <bean id="ventaTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaTranslator">
         <property name="ventaDetalleTranslator" ref="ventaDetalleTranslator"/>
         <property name="ventaFormaPagoTranslator" ref="ventaFormaPagoTranslator"/>
+        <property name="clienteTranslator" ref="clienteTranslator"/>
     </bean>
     <bean id="ventaDetalleTranslator" class="ar.edu.uai.paradigms.translator.venta.VentaDetalleTranslator"/>
     <bean id="formaPagoTranslator" class="ar.edu.uai.paradigms.translator.venta.FormaPagoTranslator"/>

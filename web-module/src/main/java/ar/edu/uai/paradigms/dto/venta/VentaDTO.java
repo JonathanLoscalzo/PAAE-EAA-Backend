@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dto.venta;
 
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.cliente.ClienteDTO;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collection;
@@ -29,6 +30,22 @@ public class VentaDTO implements DTO<Integer> {
 
     @JsonProperty("formasPago")
     private Collection<VentaFormaPagoDTO> formasPago;
+
+    @JsonCreator
+    public VentaDTO(@JsonProperty Integer id,
+                    @JsonProperty Date fecha,
+                    @JsonProperty Integer nro,
+                    @JsonProperty ClienteDTO cliente,
+                    @JsonProperty Collection<VentaDetalleDTO> detalles,
+                    @JsonProperty Collection<VentaFormaPagoDTO> formasPago) {
+
+        this.id = id;
+        this.fecha = fecha;
+        this.nro = nro;
+        this.cliente = cliente;//solo ID
+        this.detalles = detalles;
+        this.formasPago = formasPago;
+    }
 
     public void setId(Integer id) {
         this.id = id;

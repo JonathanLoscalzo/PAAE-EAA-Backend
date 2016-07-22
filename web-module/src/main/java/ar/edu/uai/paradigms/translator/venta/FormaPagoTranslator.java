@@ -21,12 +21,7 @@ public class FormaPagoTranslator extends TranslatorImpl<FormaPagoDTO, FormaPago>
 
     @Override
     public FormaPagoDTO translateToDTO(FormaPago fp) {
-        FormaPagoDTO fpdto = new FormaPagoDTO();
-        fpdto.setId(fp.getId());
-        fpdto.setNombre(fp.getNombre());
-        fpdto.setPermiteDarCambio(fp.getPermiteDarCambio());
-
-        return fpdto;
+        return new FormaPagoDTO(fp.getNombre(), fp.getId(), fp.getPermiteDarCambio());
     }
 
     @Override
