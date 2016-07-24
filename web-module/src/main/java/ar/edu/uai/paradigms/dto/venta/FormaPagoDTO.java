@@ -11,7 +11,7 @@ public class FormaPagoDTO implements DTO<Integer> {
 
     private String nombre;
     private Integer id;
-    private Integer permiteDarCambio;
+    private Boolean permiteDarCambio;
 
     public FormaPagoDTO(){
 
@@ -20,17 +20,17 @@ public class FormaPagoDTO implements DTO<Integer> {
     @JsonCreator
     public FormaPagoDTO(@JsonProperty("id") Integer id,
                         @JsonProperty("nombre") String nombre,
-                        @JsonProperty("permiteDarCambio") Integer permiteDarCambio) {
+                        @JsonProperty("permiteDarCambio") Boolean permiteDarCambio) {
         this.nombre = nombre;
         this.id = id;
         this.permiteDarCambio = permiteDarCambio;
     }
 
-    public Integer getPermiteDarCambio() {
+    public Boolean getPermiteDarCambio() {
         return permiteDarCambio;
     }
 
-    public void setPermiteDarCambio(Integer permiteDarCambio) {
+    public void setPermiteDarCambio(Boolean permiteDarCambio) {
         this.permiteDarCambio = permiteDarCambio;
     }
 

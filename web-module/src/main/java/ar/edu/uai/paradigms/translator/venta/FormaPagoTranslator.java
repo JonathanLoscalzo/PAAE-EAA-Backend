@@ -13,7 +13,7 @@ import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 public class FormaPagoTranslator extends TranslatorImpl<FormaPagoDTO, FormaPago> {
     @Override
     public FormaPago translate(FormaPagoDTO dto) {
-        FormaPago fp = new FormaPago(dto.getNombre(), dto.getPermiteDarCambio() == 1);
+        FormaPago fp = new FormaPago(dto.getNombre(), dto.getPermiteDarCambio());
         fp.setId(dto.getId());
 
         return fp;
@@ -22,7 +22,7 @@ public class FormaPagoTranslator extends TranslatorImpl<FormaPagoDTO, FormaPago>
     @Override
     public FormaPagoDTO translateToDTO(FormaPago fp) {
         if (fp != null) {
-            return new FormaPagoDTO(fp.getNombre(), fp.getId(), fp.getPermiteDarCambio() ? 1 : 0);
+            return new FormaPagoDTO(fp.getId(), fp.getNombre(), fp.getPermiteDarCambio());
         } else {
             return new FormaPagoDTO();
         }
