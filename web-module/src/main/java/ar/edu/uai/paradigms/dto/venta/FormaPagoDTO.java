@@ -9,34 +9,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class FormaPagoDTO implements DTO<Integer> {
 
-    @JsonProperty
     private String nombre;
-
-    @JsonProperty
     private Integer id;
+    private Integer permiteDarCambio;
 
-    @JsonProperty
-    private Boolean permiteDarCambio;
+    public FormaPagoDTO(){
+
+    }
 
     @JsonCreator
-    public FormaPagoDTO(@JsonProperty String nombre,
-                        @JsonProperty Integer id,
-                        @JsonProperty Boolean permiteDarCambio) {
+    public FormaPagoDTO(@JsonProperty("id") Integer id,
+                        @JsonProperty("nombre") String nombre,
+                        @JsonProperty("permiteDarCambio") Integer permiteDarCambio) {
         this.nombre = nombre;
         this.id = id;
         this.permiteDarCambio = permiteDarCambio;
     }
 
-    @JsonCreator
-    public FormaPagoDTO(@JsonProperty Integer id) {
-        this.id = id;
-    }
-
-    public Boolean getPermiteDarCambio() {
+    public Integer getPermiteDarCambio() {
         return permiteDarCambio;
     }
 
-    public void setPermiteDarCambio(Boolean permiteDarCambio) {
+    public void setPermiteDarCambio(Integer permiteDarCambio) {
         this.permiteDarCambio = permiteDarCambio;
     }
 

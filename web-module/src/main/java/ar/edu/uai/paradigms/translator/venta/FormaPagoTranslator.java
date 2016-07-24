@@ -2,8 +2,8 @@ package ar.edu.uai.paradigms.translator.venta;
 
 import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.model.formaPago.FormaPago;
+import ar.edu.uai.model.formaPago.FormaPagoCriteria;
 import ar.edu.uai.paradigms.dto.CriteriaDTO;
-import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.venta.FormaPagoDTO;
 import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 
@@ -13,7 +13,7 @@ import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 public class FormaPagoTranslator extends TranslatorImpl<FormaPagoDTO, FormaPago> {
     @Override
     public FormaPago translate(FormaPagoDTO dto) {
-        FormaPago fp = new FormaPago(dto.getNombre(), dto.getPermiteDarCambio());
+        FormaPago fp = new FormaPago(dto.getNombre(), dto.getPermiteDarCambio() == 1);
         fp.setId(dto.getId());
 
         return fp;
@@ -21,11 +21,15 @@ public class FormaPagoTranslator extends TranslatorImpl<FormaPagoDTO, FormaPago>
 
     @Override
     public FormaPagoDTO translateToDTO(FormaPago fp) {
-        return new FormaPagoDTO(fp.getNombre(), fp.getId(), fp.getPermiteDarCambio());
+        if (fp != null) {
+            return new FormaPagoDTO(fp.getNombre(), fp.getId(), fp.getPermiteDarCambio() ? 1 : 0);
+        } else {
+            return new FormaPagoDTO();
+        }
     }
 
     @Override
     public ModelCriteria translateCriteria(CriteriaDTO<FormaPagoDTO> modelCriteria) {
-        return null;
+        return new FormaPagoCriteria();
     }
 }

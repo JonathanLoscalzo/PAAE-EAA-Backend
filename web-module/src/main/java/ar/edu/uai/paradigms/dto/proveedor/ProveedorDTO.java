@@ -20,7 +20,6 @@ public class ProveedorDTO implements DTO<Integer> {
         this.id = id;
         this.name = name;
         this.product_request_url = product_request_url;
-
     }
 
 

@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dao.Generics;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -13,13 +14,25 @@ public abstract class GenericDAO<E, I, C> implements PersistentDAO<E, I, C> {
     private EntityManager entityManager;
     protected Class<? extends E> daoType;
 
+    public Class domainClass = getDomainClass();
+
+    protected Class getDomainClass() {
+        if (domainClass == null) {
+            ParameterizedType thisType = (ParameterizedType) getClass()
+                    .getGenericSuperclass();
+            domainClass = (Class) thisType.getActualTypeArguments()[0];
+        }
+
+        return domainClass;
+    }
+
     public E create(E e) {
         this.entityManager.persist(e);
         return e;
     }
 
     public E retrieve(I id) {
-        return this.entityManager.find(daoType, id);
+        return (E) this.entityManager.find(domainClass, id);
     }
 
     public E update(E e) {
