@@ -22,6 +22,7 @@ public class VentaDetalle extends Model<Integer> {
         setProducto(producto);
         setFila(fila);
         setVenta(venta);
+        setCantidad(cantidad);
     }
 
     @Id
