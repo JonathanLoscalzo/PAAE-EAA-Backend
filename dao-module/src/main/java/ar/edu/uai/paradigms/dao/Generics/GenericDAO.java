@@ -2,6 +2,10 @@ package ar.edu.uai.paradigms.dao.Generics;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -43,5 +47,13 @@ public abstract class GenericDAO<E, I, C> implements PersistentDAO<E, I, C> {
         this.entityManager.remove(this.retrieve(id));
     }
 
-    public abstract List<E> retrieveByCriteria(C c);
+    public List<E> retrieveByCriteria(C c){
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<E> query = cb.createQuery(domainClass);
+        Root<E> elems = query.from(domainClass);
+        query.select(elems);
+
+        TypedQuery<E> typedQuery = entityManager.createQuery(query);
+        return typedQuery.getResultList();
+    };
 }
