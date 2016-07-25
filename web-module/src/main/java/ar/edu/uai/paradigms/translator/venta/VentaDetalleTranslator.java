@@ -16,11 +16,13 @@ public class VentaDetalleTranslator extends TranslatorImpl<VentaDetalleDTO, Vent
     @Override
     public VentaDetalle translate(VentaDetalleDTO dto) {
         VentaDetalle vd = new VentaDetalle();
-        vd.setFila(dto.getFila());
-        vd.setCantidad(dto.getCantidad());
-        vd.setPrecio(dto.getPrecio());
-        vd.setProducto(productoTranslator.translate(dto.getProducto()));
-        vd.setId(dto.getId());
+        if (dto != null) {
+            vd.setFila(dto.getFila());
+            vd.setCantidad(dto.getCantidad());
+            vd.setPrecio(dto.getPrecio());
+            vd.setProducto(productoTranslator.translate(dto.getProducto()));
+            vd.setId(dto.getId());
+        }
 
         return vd;
     }

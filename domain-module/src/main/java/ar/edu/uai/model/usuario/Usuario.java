@@ -1,8 +1,10 @@
 package ar.edu.uai.model.usuario;
 
 import ar.edu.uai.model.Generics.Model;
+import ar.edu.uai.model.venta.Venta;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -29,6 +31,16 @@ public class Usuario extends Model<Integer>
     @Column(name = "ROLE", nullable = false)
     private String role;
 
+    public Collection<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(Collection<Venta> ventas) {
+        this.ventas = ventas;
+    }
+
+    @OneToMany
+    private Collection<Venta> ventas;
 
     public Usuario(){}
     public Usuario(Integer id, String username, String password, String role) {
@@ -36,6 +48,7 @@ public class Usuario extends Model<Integer>
         this.username = username;
         this.password = password;
         this.role = role;
+        this.ventas = new ArrayList();
     }
 
     public Integer getId() {

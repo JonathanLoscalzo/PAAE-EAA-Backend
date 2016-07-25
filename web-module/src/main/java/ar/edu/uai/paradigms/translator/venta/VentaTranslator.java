@@ -6,6 +6,7 @@ import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.venta.VentaDTO;
 import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 import ar.edu.uai.paradigms.translator.cliente.ClienteTranslator;
+import ar.edu.uai.paradigms.translator.usuario.UsuarioTranslator;
 
 /**
  * Created by jloscalzo on 26/05/16.
@@ -15,6 +16,7 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
     private VentaFormaPagoTranslator ventaFormaPagoTranslator;
     private VentaDetalleTranslator ventaDetalleTranslator;
     private ClienteTranslator clienteTranslator;
+    private UsuarioTranslator usuarioTranslator;
 
     @Override
     public Venta translate(VentaDTO dto) {
@@ -36,8 +38,8 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
                 v.getNro(),
                 clienteTranslator.translateToDTO(v.getCliente()),
                 ventaDetalleTranslator.translateToDTO(v.getDetalles()),
-                ventaFormaPagoTranslator.translateToDTO(v.getVentaFormasPago())
-        );
+                ventaFormaPagoTranslator.translateToDTO(v.getVentaFormasPago()),
+                usuarioTranslator.translateToDTO(v.getUsuario()));
     }
 
     @Override
@@ -55,5 +57,9 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
 
     public void setClienteTranslator(ClienteTranslator clienteTranslator) {
         this.clienteTranslator = clienteTranslator;
+    }
+
+    public void setUsuarioTranslator(UsuarioTranslator usuarioTranslator) {
+        this.usuarioTranslator = usuarioTranslator;
     }
 }

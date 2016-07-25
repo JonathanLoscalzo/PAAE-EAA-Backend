@@ -28,26 +28,11 @@ public class VentaDetalleDTO implements DTO<Integer> {
     private Double precio;
 
     @JsonCreator
-    public VentaDetalleDTO(@JsonProperty Integer id,
-                           @JsonProperty Integer fila,
-                           @JsonProperty ProductoDTO producto,
-                           @JsonProperty VentaDTO venta,
-                           @JsonProperty Integer cantidad,
-                           @JsonProperty Double precio) {
-        this.id = id;
-        this.fila = fila;
-        this.producto = producto;
-        this.venta = venta;
-        this.cantidad = cantidad;
-        this.precio = precio;
-    }
-
-    @JsonCreator
-    public VentaDetalleDTO(@JsonProperty Integer id,
-                           @JsonProperty Integer fila,
-                           @JsonProperty ProductoDTO producto,
-                           @JsonProperty Integer cantidad,
-                           @JsonProperty Double precio) {
+    public VentaDetalleDTO(@JsonProperty("id") Integer id,
+                           @JsonProperty("fila") Integer fila,
+                           @JsonProperty("producto") ProductoDTO producto,
+                           @JsonProperty("cantidad") Integer cantidad,
+                           @JsonProperty("precio") Double precio) {
         this.id = id;
         this.fila = fila;
         this.producto = producto;

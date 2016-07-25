@@ -4,6 +4,7 @@ import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.venta.Venta;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -42,6 +43,7 @@ public class Cliente extends Model<Integer>
         this.nombre = nombre;
         this.apellido = apellido;
         this.deleted = false;
+        this.ventas = new ArrayList();
     }
 
     public void delete()

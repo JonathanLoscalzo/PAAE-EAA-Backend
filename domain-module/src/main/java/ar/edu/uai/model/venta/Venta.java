@@ -2,6 +2,7 @@ package ar.edu.uai.model.venta;
 
 import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.formaPago.FormaPago;
+import ar.edu.uai.model.usuario.Usuario;
 import ar.edu.uai.model.ventaDetalle.VentaDetalle;
 import ar.edu.uai.model.cliente.Cliente;
 
@@ -13,14 +14,13 @@ import java.util.Date;
 @Table(name = "VENTA")
 @Access(AccessType.FIELD)
 public class Venta extends Model {
-//TODO Falta vendedor
     public Venta() {
 
     }
 
     public Venta(int nro, Cliente cliente, Date fecha){
         setCliente(cliente);
-        setFecha(fecha);
+        setFecha(new Date());
         setNro(nro);
     }
 
@@ -42,6 +42,9 @@ public class Venta extends Model {
 
     @ManyToOne
     private Cliente cliente;
+
+    @ManyToOne
+    private Usuario usuario; //VENDEDOR
 
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<VentaDetalle> detalles;
@@ -91,5 +94,13 @@ public class Venta extends Model {
 
     public void setVentaFormasPago(Collection<VentaFormaPago> ventaFormasPago) {
         this.ventaFormasPago = ventaFormasPago;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

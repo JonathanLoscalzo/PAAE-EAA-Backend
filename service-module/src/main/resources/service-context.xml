@@ -18,6 +18,7 @@
 
     <bean id="productoService" class="ar.edu.uai.paradigms.service.impl.ProductoServiceImpl">
         <constructor-arg ref="productoDAO" />
+        <property name="loteService" ref="loteService"/>
     </bean>
 
     <bean id="proveedorService" class="ar.edu.uai.paradigms.service.impl.ProveedorServiceImpl">

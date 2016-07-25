@@ -7,6 +7,7 @@ import ar.edu.uai.model.proveedor.Proveedor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -64,6 +65,28 @@ public class Producto extends Model<Integer> {
             units+= l.getUnidadesRestantes();
         }
         return units;
+    }
+
+    public void discount(int cantidad) throws ValidationException {
+        Integer current = this.getCurrentUnits();
+
+        if (current <= cantidad) throw new ValidationException("No hay suficiente stock");
+
+        Integer restante = cantidad;
+
+        for (Lote lote : this.getLotes()) {
+            int unidadesRestantes = lote.getUnidadesRestantes();
+            if (unidadesRestantes >= restante) {
+                lote.consumirUnidades(restante);
+                cantidad = 0;
+                break;
+            } else {
+                if (unidadesRestantes < restante) {
+                    restante -= unidadesRestantes;
+                    lote.consumirUnidades(unidadesRestantes);
+                }
+            }
+        }
     }
 
     public boolean porAgotarse()

@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dto.venta;
 
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.cliente.ClienteDTO;
+import ar.edu.uai.paradigms.dto.usuario.UsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -31,20 +32,39 @@ public class VentaDTO implements DTO<Integer> {
     @JsonProperty("formasPago")
     private Collection<VentaFormaPagoDTO> formasPago;
 
+    private UsuarioDTO usuario;
+
     @JsonCreator
-    public VentaDTO(@JsonProperty Integer id,
-                    @JsonProperty Date fecha,
-                    @JsonProperty Integer nro,
-                    @JsonProperty ClienteDTO cliente,
-                    @JsonProperty Collection<VentaDetalleDTO> detalles,
-                    @JsonProperty Collection<VentaFormaPagoDTO> formasPago) {
+    public VentaDTO(@JsonProperty("id") Integer id,
+                    @JsonProperty("fecha") Date fecha,
+                    @JsonProperty("nro") Integer nro,
+                    @JsonProperty("cliente") ClienteDTO cliente,
+                    @JsonProperty("detalles") Collection<VentaDetalleDTO> detalles,
+                    @JsonProperty("formasPago") Collection<VentaFormaPagoDTO> formasPago) {
 
         this.id = id;
         this.fecha = fecha;
         this.nro = nro;
         this.cliente = cliente;//solo ID
         this.detalles = detalles;
-        this.formasPago = formasPago;
+        this.formasPago = formasPago; //forma_pago_id y cantidad
+    }
+
+    public VentaDTO(Integer id,
+                    Date fecha,
+                    Integer nro,
+                    ClienteDTO cliente,
+                    Collection<VentaDetalleDTO> detalles,
+                    Collection<VentaFormaPagoDTO> formasPago,
+                    UsuarioDTO usuarioDTO) {
+
+        this.id = id;
+        this.fecha = fecha;
+        this.nro = nro;
+        this.cliente = cliente;//solo ID
+        this.detalles = detalles;
+        this.formasPago = formasPago; //forma_pago_id y cantidad
+        usuario = usuarioDTO;
     }
 
     public void setId(Integer id) {

@@ -28,6 +28,11 @@ public class VentaFormaPago extends Model<Integer> {
     @Column(name = "VENTA_FORMAPAGO_ID", unique = true, nullable = false)
     private Integer id;
 
+    public VentaFormaPago(Double cantidad, FormaPago formaPago) {
+        this.cantidad = cantidad;
+        this.formaPago = formaPago;
+    }
+
     public VentaFormaPago() {
     }
 
@@ -36,6 +41,8 @@ public class VentaFormaPago extends Model<Integer> {
         this.formaPago = formapago;
         this.cantidad = cantidad;
     }
+
+
 
     public Double getCantidad() {
         return cantidad;

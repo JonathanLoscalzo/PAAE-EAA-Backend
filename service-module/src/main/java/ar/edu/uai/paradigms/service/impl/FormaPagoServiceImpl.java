@@ -17,11 +17,11 @@ public class FormaPagoServiceImpl extends ServiceImpl<FormaPago, Integer> implem
 
     @Override
     public boolean couldDiscount(Integer id, Double cantidad) {
-        return false;
+        return true;
     }
 
     @Override
     public void discount(Integer id, Double cantidad) {
-
+        //TODO implementar el external dao aquí
     }
 }
