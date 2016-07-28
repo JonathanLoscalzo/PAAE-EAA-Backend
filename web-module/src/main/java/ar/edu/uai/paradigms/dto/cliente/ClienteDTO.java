@@ -25,10 +25,6 @@ public class ClienteDTO implements DTO<Integer> {
 
     }
 
-    public ClienteDTO(@JsonProperty("id") Integer id) {
-        this.id = id;
-    }
-
     @Override
     public Integer getId() {
         return id;

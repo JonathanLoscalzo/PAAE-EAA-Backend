@@ -65,6 +65,7 @@ public class SavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuth
                             "formas de pago:/payment_forms;"+
                             "proveedores:/suppliers;"+
                             "clientes:/clients;"+
+                            "ventas:/sales;"+
                             "usuarios:/users;"+
                             "estadisticas:/statistics/show;"+
                             "alarmas:/alarms/show;"+
