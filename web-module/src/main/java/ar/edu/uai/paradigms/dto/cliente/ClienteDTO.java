@@ -25,7 +25,6 @@ public class ClienteDTO implements DTO<Integer> {
 
     }
 
-    @JsonCreator
     public ClienteDTO(@JsonProperty("id") Integer id) {
         this.id = id;
     }

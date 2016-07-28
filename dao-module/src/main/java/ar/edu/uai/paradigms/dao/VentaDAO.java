@@ -4,6 +4,7 @@ import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.model.venta.VentaCriteria;
 import ar.edu.uai.paradigms.dao.Generics.GenericDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,6 @@ import java.util.List;
 public class VentaDAO extends GenericDAO<Venta, Integer, VentaCriteria> {
     @Override
     public List<Venta> retrieveByCriteria(VentaCriteria ventaCriteria) {
-        return null;
+        return new ArrayList<Venta>();
     }
 }

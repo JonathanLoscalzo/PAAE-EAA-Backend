@@ -1,10 +1,8 @@
 package ar.edu.uai.model.formaPago;
 
 import ar.edu.uai.model.Generics.Model;
-import ar.edu.uai.model.venta.VentaFormaPago;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
  * Created by jloscalzo on 25/05/16.
@@ -12,17 +10,17 @@ import java.util.Collection;
 @Entity
 @Table(name = "FORMAS_PAGO")
 @Access(AccessType.FIELD)
-public class FormaPago extends Model<Integer>{
+public class FormaPago extends Model<Integer> {
 
     @Id
     @GeneratedValue
     @Column(name = "FORMA_PAGO_ID", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name="NOMBRE")
+    @Column(name = "NOMBRE")
     private String nombre;
 
-    @Column(name="PERMITE_DAR_CAMBIO")
+    @Column(name = "PERMITE_DAR_CAMBIO")
     private Boolean permiteDarCambio;
 
     /*@OneToMany() // TODO: que tipo de cascada?
@@ -33,7 +31,7 @@ public class FormaPago extends Model<Integer>{
         this.permiteDarCambio = permiteDarCambio;
     }
 
-    public FormaPago(){
+    public FormaPago() {
 
     }
 
@@ -43,7 +41,7 @@ public class FormaPago extends Model<Integer>{
 
     @Override
     public Integer getId() {
-        return null;
+        return id;
     }
 
     public void setPermiteDarCambio(Boolean permiteDarCambio) {
