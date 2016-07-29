@@ -38,7 +38,7 @@ public class Venta extends Model {
     private Date fecha;
 
     @Column(name = "NRO_FACTURA")
-    private int nro;
+    private Integer nro;
 
     @ManyToOne
     private Cliente cliente;
@@ -68,7 +68,7 @@ public class Venta extends Model {
         return nro;
     }
 
-    public void setNro(int nro) {
+    public void setNro(Integer nro) {
         this.nro = nro;
     }
 

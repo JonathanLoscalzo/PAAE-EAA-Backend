@@ -6,8 +6,6 @@ import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.model.producto.ProductoCriteria;
 import ar.edu.uai.model.proveedor.Proveedor;
 import ar.edu.uai.paradigms.dto.CriteriaDTO;
-import ar.edu.uai.paradigms.dto.DTO;
-import ar.edu.uai.paradigms.dto.producto.ProductoCriteriaDTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
 import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 import ar.edu.uai.paradigms.translator.proveedor.ProveedorTranslator;
@@ -18,32 +16,29 @@ import java.util.List;
 /**
  * Created by Hal on 18/04/2016.
  */
-public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto>
-{
+public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto> {
     private ProveedorTranslator proveedorTranslator;
-    public Producto translate(ProductoDTO productoDTO, Proveedor proveedor)
-    {
-        return new Producto (productoDTO.getId(),
-                            productoDTO.getName(),
-                            productoDTO.getMinimum(),
-                            proveedor);
+
+    public Producto translate(ProductoDTO productoDTO, Proveedor proveedor) {
+        return new Producto(productoDTO.getId(),
+                productoDTO.getName(),
+                productoDTO.getMinimum(),
+                proveedor);
     }
 
-    public Producto translate(ProductoDTO productoDTO)
-    {
+    public Producto translate(ProductoDTO productoDTO) {
         Proveedor p = new Proveedor();
-
-        return new Producto (productoDTO.getId(),
+        if (productoDTO == null)
+            return new Producto();
+        return new Producto(productoDTO.getId(),
                 productoDTO.getName(),
                 productoDTO.getMinimum(),
                 p/*proveedorTranslator.translate()*/);
     }
 
-    public ProductoDTO translateToDTO(Producto producto)
-    {
-        if (producto != null)
-        {
-            return new ProductoDTO( producto.getId(),
+    public ProductoDTO translateToDTO(Producto producto) {
+        if (producto != null) {
+            return new ProductoDTO(producto.getId(),
                     producto.getNombre(),
                     producto.getMinimo(),
                     producto.getCurrentUnits(),
@@ -59,9 +54,9 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto>
 
     public List<ProductoDTO> translateToDTO(List<Producto> productos) {
         List<ProductoDTO> productoResponse = new ArrayList<ProductoDTO>();
-        for(Producto i : productos) {
+        for (Producto i : productos) {
             ProductoDTO productoDTO = this.translateToDTO(i);
-            if(productoDTO != null) {
+            if (productoDTO != null) {
                 productoResponse.add(productoDTO);
             }
         }

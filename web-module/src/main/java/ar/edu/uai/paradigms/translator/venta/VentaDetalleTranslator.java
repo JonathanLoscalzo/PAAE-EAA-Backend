@@ -11,6 +11,10 @@ import ar.edu.uai.paradigms.translator.producto.ProductoTranslator;
  * Created by jloscalzo on 26/05/16.
  */
 public class VentaDetalleTranslator extends TranslatorImpl<VentaDetalleDTO, VentaDetalle> {
+    public void setProductoTranslator(ProductoTranslator productoTranslator) {
+        this.productoTranslator = productoTranslator;
+    }
+
     private ProductoTranslator productoTranslator;
 
     @Override

@@ -38,16 +38,18 @@ public class VentaDTO implements DTO<Integer> {
     public VentaDTO(@JsonProperty("id") Integer id,
                     @JsonProperty("fecha") Date fecha,
                     @JsonProperty("nro") Integer nro,
-                    @JsonProperty("cliente") ClienteDTO cliente,
-                    @JsonProperty("detalles") Collection<VentaDetalleDTO> detalles,
-                    @JsonProperty("formasPago") Collection<VentaFormaPagoDTO> formasPago) {
+                    @JsonProperty("client_id") Integer clienteId,
+                    @JsonProperty("user_id") Integer userId,
+                    @JsonProperty("sale_details") Collection<VentaDetalleDTO> detalles,
+                    @JsonProperty("vfps") Collection<VentaFormaPagoDTO> formasPago) {
 
         this.id = id;
         this.fecha = fecha;
         this.nro = nro;
-        this.cliente = cliente;//solo ID
+        this.cliente = new ClienteDTO(clienteId, null, "", "");
         this.detalles = detalles;
         this.formasPago = formasPago; //forma_pago_id y cantidad
+        this.usuario = new UsuarioDTO(userId, null, null, null);
     }
 
     public VentaDTO(Integer id,
@@ -79,7 +81,7 @@ public class VentaDTO implements DTO<Integer> {
         this.fecha = fecha;
     }
 
-    public int getNro() {
+    public Integer getNro() {
         return nro;
     }
 

@@ -9,33 +9,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by jloscalzo on 26/05/16.
  */
 public class VentaDetalleDTO implements DTO<Integer> {
-    @JsonProperty("id")
     private Integer id;
 
-    @JsonProperty("fila")
     private Integer fila;
 
     @JsonProperty("producto")
     private ProductoDTO producto;
 
-    @JsonProperty("venta")
     private VentaDTO venta;
 
-    @JsonProperty("cantidad")
     private Integer cantidad;
 
-    @JsonProperty("precio")
     private Double precio;
 
     @JsonCreator
     public VentaDetalleDTO(@JsonProperty("id") Integer id,
                            @JsonProperty("fila") Integer fila,
-                           @JsonProperty("producto") ProductoDTO producto,
+                           @JsonProperty("product_id") Integer productoId,
+                           @JsonProperty("sale_id") Integer saleId,
                            @JsonProperty("cantidad") Integer cantidad,
                            @JsonProperty("precio") Double precio) {
         this.id = id;
         this.fila = fila;
-        this.producto = producto;
+        this.producto = new ProductoDTO(productoId, null, null, null, null);
+        this.venta = new VentaDTO(saleId, null, null, Math.toIntExact(0), null, null, null);
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+
+    public VentaDetalleDTO(Integer id, Integer fila, ProductoDTO productoDTO, Integer cantidad, Double precio) {
+        this.id = id;
+        this.fila = fila;
+        this.producto = productoDTO;
         this.cantidad = cantidad;
         this.precio = precio;
     }
