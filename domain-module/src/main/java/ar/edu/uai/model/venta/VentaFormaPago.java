@@ -15,7 +15,7 @@ public class VentaFormaPago extends Model<Integer> {
     @Column(name = "CANTIDAD")
     private Double cantidad;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="FORMA_PAGO_ID")
     private FormaPago formaPago;
 

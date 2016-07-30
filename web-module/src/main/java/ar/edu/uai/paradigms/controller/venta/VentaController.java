@@ -1,6 +1,7 @@
 package ar.edu.uai.paradigms.controller.venta;
 
 import ar.edu.uai.model.Generics.Model;
+import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.paradigms.controller.Generics.BaseController;
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.venta.VentaDTO;
@@ -8,6 +9,7 @@ import ar.edu.uai.paradigms.dto.venta.criterias.VentaCriteriaDTO;
 import ar.edu.uai.paradigms.service.FormaPagoService;
 import ar.edu.uai.paradigms.service.Service;
 import ar.edu.uai.paradigms.service.VentaDetalleService;
+import ar.edu.uai.paradigms.service.VentaService;
 import ar.edu.uai.paradigms.translator.Generics.Translator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +50,8 @@ public class VentaController extends BaseController<VentaDTO, VentaCriteriaDTO> 
     @RequestMapping(method = RequestMethod.GET, value = "/client/{client_id}")
     ResponseEntity<Collection<VentaDTO>> getClientSales(@PathVariable Integer client_id) throws InterruptedException {
         // comunicate con el servicio de clientes y pedile las ventas
-        return new ResponseEntity<>(new ArrayList<VentaDTO>(), HttpStatus.OK);
+        List<Venta> ventas = ((VentaService)this.service).GetClientSales(client_id);
+        List<VentaDTO> ventasDTO = (List<VentaDTO>) translator.translateToDTO(ventas);
+        return new ResponseEntity<>(ventasDTO, HttpStatus.OK);
     }
 }

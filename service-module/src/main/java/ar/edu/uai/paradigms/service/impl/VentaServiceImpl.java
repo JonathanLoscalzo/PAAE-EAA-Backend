@@ -4,6 +4,7 @@ import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.model.venta.VentaFormaPago;
 import ar.edu.uai.model.ventaDetalle.VentaDetalle;
 import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
+import ar.edu.uai.paradigms.dao.VentaDAO;
 import ar.edu.uai.paradigms.service.ClienteService;
 import ar.edu.uai.paradigms.service.FormaPagoService;
 import ar.edu.uai.paradigms.service.ProductoService;
@@ -100,5 +101,10 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
 
     public void setProductoService(ProductoService productoService) {
         this.productoService = productoService;
+    }
+
+    @Override
+    public List<Venta> GetClientSales(Integer client_id) {
+        return ((VentaDAO)dao).getSalesFromClient(client_id);
     }
 }
