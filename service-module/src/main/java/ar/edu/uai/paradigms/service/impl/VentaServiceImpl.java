@@ -47,24 +47,10 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
         return super.save(venta);
     }
 
-    private Venta recoverEntireModel(Venta v) {
-        v.getDetalles().stream().forEach(d -> {
-            if (productoService.exist(d.getProducto().getId()))
-                d.setProducto(productoService.retrieve(d.getProducto().getId()));
-        });
-
-        if (clienteService.exist(v.getCliente().getId())) v.setCliente(clienteService.retrieve(v.getCliente().getId()));
-        v.getVentaFormasPago().stream().forEach(vfp -> {
-            if (formaPagoService.exist(vfp.getFormaPago().getId()))
-                vfp.setFormaPago(formaPagoService.retrieve(vfp.getFormaPago().getId()));
-        });
-        return v;
-    }
-
     @Override
     public Boolean validateModel(Venta v) {
         Boolean valid = false;
-        this.recoverEntireModel(v);
+
         List<VentaDetalle> hasNoStock = v.getDetalles()
                 .stream()
                 .filter(d -> productoService.exist(d.getProducto().getId()) && !productoService.hasStock(d.getProducto().getId(), d.getCantidad()))
@@ -72,13 +58,14 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
 
         if (hasNoStock.size() > 0) {
             hasNoStock.forEach(d -> v.addMessage("No tiene stock " + d.getProducto().getNombre() + " stock: " + d.getProducto().getCurrentUnits()));
+            return !v.hasError();
         }
 
         v.getDetalles().forEach(d -> {
             try {
                 productoService.discount(d.getProducto().getId(), d.getCantidad());
             } catch (ValidationException e) {
-                d.addMessage("No tiene stock " + d.getProducto().getNombre() + " stock: " + d.getProducto().getCurrentUnits());
+
             }
         });
 
@@ -97,7 +84,7 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
         }
 
         v.getVentaFormasPago().stream().forEach(x -> formaPagoService.discount(x.getFormaPago().getId(), x.getCantidad()));
-        return v.hasError();
+        return !v.hasError();
     }
 
     public void setFormaPagoService(FormaPagoService formaPagoService) {

@@ -64,7 +64,7 @@ public class Venta extends Model {
         this.fecha = fecha;
     }
 
-    public int getNro() {
+    public Integer getNro() {
         return nro;
     }
 
