@@ -55,7 +55,7 @@ public abstract class BaseController<viewModel extends DTO, criteriaViewModel ex
     protected ResponseEntity<viewModel> createHook(@RequestBody viewModel dto) {
         Model model = this.translator.translate(dto);
         Model modelP = this.service.save(model);
-        if (modelP.hasError()) {
+            if (modelP.hasError()) {
             ErrorDTO e = new ErrorDTO();
             e.messageErrors = (List<String>) modelP.getErrors();
             return (ResponseEntity<viewModel>) new ResponseEntity<ErrorDTO>(e, HttpStatus.OK);
