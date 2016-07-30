@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dto.venta;
 
 import ar.edu.uai.paradigms.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -11,8 +12,10 @@ public class VentaFormaPagoDTO implements DTO<Integer> {
 
     private Double cantidad;
 
+    @JsonProperty("payment_form")
     private FormaPagoDTO formaPago;
 
+    @JsonIgnore
     private VentaDTO venta;
 
     private Integer id;

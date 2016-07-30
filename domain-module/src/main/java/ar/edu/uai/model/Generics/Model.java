@@ -14,7 +14,9 @@ public abstract class Model<Identifier> {
         messageErrors = new LinkedList<String>();
     }
     private Collection<String> messageErrors;
-
+    public Collection<String> getErrors(){
+        return messageErrors;
+    }
     public boolean hasError(){
         return 0 < messageErrors.size();
     }

@@ -8,6 +8,8 @@ import ar.edu.uai.paradigms.translator.Generics.TranslatorImpl;
 import ar.edu.uai.paradigms.translator.cliente.ClienteTranslator;
 import ar.edu.uai.paradigms.translator.usuario.UsuarioTranslator;
 
+import javax.transaction.Transactional;
+
 /**
  * Created by jloscalzo on 26/05/16.
  */
@@ -32,6 +34,7 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
 
     @Override
     public VentaDTO translateToDTO(Venta v) {
+        if (v != null)
         return new VentaDTO(
                 v.getId(),
                 v.getFecha(),
@@ -40,6 +43,7 @@ public class VentaTranslator extends TranslatorImpl<VentaDTO, Venta> {
                 ventaDetalleTranslator.translateToDTO(v.getDetalles()),
                 ventaFormaPagoTranslator.translateToDTO(v.getVentaFormasPago()),
                 usuarioTranslator.translateToDTO(v.getUsuario()));
+        return new VentaDTO();
     }
 
     @Override

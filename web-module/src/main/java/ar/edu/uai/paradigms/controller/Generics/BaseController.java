@@ -4,6 +4,7 @@ import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.Generics.ModelCriteria;
 import ar.edu.uai.paradigms.dto.CriteriaDTO;
 import ar.edu.uai.paradigms.dto.DTO;
+import ar.edu.uai.paradigms.dto.ErrorDTO;
 import ar.edu.uai.paradigms.service.Service;
 import ar.edu.uai.paradigms.translator.Generics.Translator;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public abstract class BaseController<viewModel extends DTO, criteriaViewModel ex
     protected Service service;
     protected Translator translator;
 
-    public BaseController(Service service, Translator translator){
+    public BaseController(Service service, Translator translator) {
         this.service = service;
         this.translator = translator;
     }
@@ -54,6 +55,12 @@ public abstract class BaseController<viewModel extends DTO, criteriaViewModel ex
     protected ResponseEntity<viewModel> createHook(@RequestBody viewModel dto) {
         Model model = this.translator.translate(dto);
         Model modelP = this.service.save(model);
+        if (modelP.hasError()) {
+            ErrorDTO e = new ErrorDTO();
+            e.messageErrors = (List<String>) modelP.getErrors();
+            return (ResponseEntity<viewModel>) new ResponseEntity<ErrorDTO>(e, HttpStatus.OK);
+        }
+
         viewModel output = (viewModel) this.translator.translateToDTO(modelP);
         return new ResponseEntity<>(output, HttpStatus.CREATED);
     }

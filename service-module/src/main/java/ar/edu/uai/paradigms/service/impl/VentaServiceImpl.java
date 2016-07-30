@@ -9,6 +9,7 @@ import ar.edu.uai.paradigms.service.FormaPagoService;
 import ar.edu.uai.paradigms.service.ProductoService;
 import ar.edu.uai.paradigms.service.VentaService;
 
+import javax.transaction.Transactional;
 import javax.xml.bind.ValidationException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
     }
 
     @Override
+    @Transactional
     public Venta save(Venta venta) {
         // debo validar si hay stock de todos los productos
         venta.getVentaFormasPago().stream().forEach(d -> {
@@ -48,6 +50,7 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
     }
 
     @Override
+    @Transactional
     public Boolean validateModel(Venta v) {
         Boolean valid = false;
 
