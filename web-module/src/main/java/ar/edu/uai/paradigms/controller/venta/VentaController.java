@@ -9,8 +9,17 @@ import ar.edu.uai.paradigms.service.FormaPagoService;
 import ar.edu.uai.paradigms.service.Service;
 import ar.edu.uai.paradigms.service.VentaDetalleService;
 import ar.edu.uai.paradigms.translator.Generics.Translator;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by jloscalzo on 26/05/16.
@@ -32,5 +41,13 @@ public class VentaController extends BaseController<VentaDTO, VentaCriteriaDTO> 
 
     public void setVentaDetalleService(VentaDetalleService ventaDetalleService) {
         this.ventaDetalleService = ventaDetalleService;
+    }
+
+    public
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/client/{client_id}")
+    ResponseEntity<Collection<VentaDTO>> getClientSales(@PathVariable Integer client_id) throws InterruptedException {
+        // comunicate con el servicio de clientes y pedile las ventas
+        return new ResponseEntity<>(new ArrayList<VentaDTO>(), HttpStatus.OK);
     }
 }

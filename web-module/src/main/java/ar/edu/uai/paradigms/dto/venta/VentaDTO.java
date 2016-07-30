@@ -1,5 +1,6 @@
 package ar.edu.uai.paradigms.dto.venta;
 
+import ar.edu.uai.model.usuario.Usuario;
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.cliente.ClienteDTO;
 import ar.edu.uai.paradigms.dto.usuario.UsuarioDTO;
@@ -46,7 +47,7 @@ public class VentaDTO implements DTO<Integer> {
         this.id = id;
         this.fecha = fecha;
         this.nro = nro;
-        this.cliente = new ClienteDTO(clienteId, null, "", "");
+        this.cliente = new ClienteDTO(clienteId, null, "", "",-1);
         this.detalles = detalles;
         this.formasPago = formasPago; //forma_pago_id y cantidad
         this.usuario = new UsuarioDTO(userId, null, null, null);

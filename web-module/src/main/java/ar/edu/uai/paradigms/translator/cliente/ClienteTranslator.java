@@ -21,7 +21,8 @@ public class ClienteTranslator extends TranslatorImpl<ClienteDTO, Cliente>
         return new Cliente (clienteDTO.getId(),
                 clienteDTO.getDni(),
                 clienteDTO.getFirst_name(),
-                clienteDTO.getLast_name());
+                clienteDTO.getLast_name(),
+                clienteDTO.getUser_id());
     }
 
     public ClienteDTO translateToDTO(Cliente cliente)
@@ -31,7 +32,8 @@ public class ClienteTranslator extends TranslatorImpl<ClienteDTO, Cliente>
             return new ClienteDTO( cliente.getId(),
                     cliente.getDni(),
                     cliente.getNombre(),
-                    cliente.getApellido());
+                    cliente.getApellido(),
+                    cliente.getUsuarioID());
         }
         return null;
     }

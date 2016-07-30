@@ -27,7 +27,7 @@
         <sec:intercept-url pattern="/products/*/batches" access="ROLE_ADMIN"/>
         <sec:intercept-url pattern="/suppliers" access="ROLE_ADMIN"/>
 
-        <sec:intercept-url pattern="/**" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_CLIENT"/>
 
         <sec:custom-filter ref="customFilter" position="FORM_LOGIN_FILTER"/>
         <sec:logout/>
@@ -54,7 +54,10 @@
     <bean id="restAuthenticationEntryPoint"
           class="ar.edu.uai.paradigms.authentication.RestAuthenticationEntryPoint"/>
     <bean id="successHandler"
-          class="ar.edu.uai.paradigms.authentication.SavedRequestAwareAuthenticationSuccessHandler"/>
+          class="ar.edu.uai.paradigms.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <constructor-arg name="usuarioService" ref="usuarioService"/>
+
+    </bean>
 
     <bean id="simpleAuthenticationProvider"
           class="ar.edu.uai.paradigms.authentication.SimpleAuthenticationProvider">

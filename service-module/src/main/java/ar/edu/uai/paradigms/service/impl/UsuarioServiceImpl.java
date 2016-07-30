@@ -23,4 +23,7 @@ public class UsuarioServiceImpl extends ServiceImpl<Usuario,Integer> implements 
     {
         return  usuarioDAO.retrieveByUsername(username);
     }
+
+
+
 }

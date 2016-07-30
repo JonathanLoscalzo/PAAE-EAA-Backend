@@ -1,6 +1,7 @@
 package ar.edu.uai.model.cliente;
 
 import ar.edu.uai.model.Generics.Model;
+import ar.edu.uai.model.usuario.Usuario;
 import ar.edu.uai.model.venta.Venta;
 
 import javax.persistence.*;
@@ -33,17 +34,21 @@ public class Cliente extends Model<Integer>
     @Column(name = "DELETED", nullable = false)
     private Boolean deleted;
 
+    @Column(name = "USUARIO", nullable = false)
+    private Integer usuarioID;
+
     @OneToMany
     private Collection<Venta> ventas;
 
     public Cliente(){}
-    public Cliente(Integer id, Integer dni, String nombre, String apellido) {
+    public Cliente(Integer id, Integer dni, String nombre, String apellido, Integer usuarioID) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.deleted = false;
         this.ventas = new ArrayList();
+        this.usuarioID = usuarioID;
     }
 
     public void delete()
@@ -61,7 +66,7 @@ public class Cliente extends Model<Integer>
     public String getApellido() {
         return apellido;
     }
-
+    public Integer getUsuarioID() {return usuarioID; }
     public Boolean getDeleted() { return deleted; }
     public Integer getDni() {
         return dni;
