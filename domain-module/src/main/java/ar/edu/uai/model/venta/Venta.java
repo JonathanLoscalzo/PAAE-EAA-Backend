@@ -40,16 +40,16 @@ public class Venta extends Model {
     @Column(name = "NRO_FACTURA")
     private Integer nro;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cliente cliente;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario; //VENDEDOR
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<VentaDetalle> detalles;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<VentaFormaPago> ventaFormasPago;
 
     public void setDetalles(Collection detalles) {
@@ -64,7 +64,7 @@ public class Venta extends Model {
         this.fecha = fecha;
     }
 
-    public int getNro() {
+    public Integer getNro() {
         return nro;
     }
 

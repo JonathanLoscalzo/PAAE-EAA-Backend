@@ -14,6 +14,10 @@ import java.util.List;
  */
 public abstract class GenericDAO<E, I, C> implements PersistentDAO<E, I, C> {
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
     @PersistenceContext(unitName = "paradigms-persistence-unit")
     private EntityManager entityManager;
     protected Class<? extends E> daoType;

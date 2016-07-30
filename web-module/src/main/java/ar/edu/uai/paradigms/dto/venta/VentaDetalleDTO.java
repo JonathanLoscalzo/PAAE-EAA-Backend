@@ -3,6 +3,7 @@ package ar.edu.uai.paradigms.dto.venta;
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.producto.ProductoDTO;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,9 +14,10 @@ public class VentaDetalleDTO implements DTO<Integer> {
 
     private Integer fila;
 
-    @JsonProperty("producto")
+    @JsonProperty("product")
     private ProductoDTO producto;
 
+    @JsonIgnore
     private VentaDTO venta;
 
     private Integer cantidad;

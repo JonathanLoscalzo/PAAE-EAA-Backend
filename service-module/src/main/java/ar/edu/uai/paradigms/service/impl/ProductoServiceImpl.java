@@ -1,6 +1,5 @@
 package ar.edu.uai.paradigms.service.impl;
 
-import ar.edu.uai.model.lote.Lote;
 import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.paradigms.dao.ProductoDAO;
 import ar.edu.uai.paradigms.service.LoteService;
@@ -15,6 +14,7 @@ import java.util.List;
  */
 public class ProductoServiceImpl extends ServiceImpl<Producto, Integer> implements ProductoService {
     private LoteService loteService;
+
     private ProductoDAO productoDAO;
 
     public ProductoServiceImpl(ProductoDAO productoDAO) {
@@ -58,5 +58,9 @@ public class ProductoServiceImpl extends ServiceImpl<Producto, Integer> implemen
 
     public void setLoteService(LoteService loteService) {
         this.loteService = loteService;
+    }
+
+    public void setProductoDAO(ProductoDAO productoDAO) {
+        this.productoDAO = productoDAO;
     }
 }

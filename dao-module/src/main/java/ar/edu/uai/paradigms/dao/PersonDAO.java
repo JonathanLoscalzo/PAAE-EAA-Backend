@@ -2,6 +2,7 @@ package ar.edu.uai.paradigms.dao;
 
 import ar.edu.uai.model.person.Person;
 import ar.edu.uai.model.person.PersonCriteria;
+import ar.edu.uai.paradigms.dao.Generics.GenericDAO;
 import ar.edu.uai.paradigms.dao.Generics.PersistentDAO;
 
 import javax.persistence.EntityManager;
@@ -17,35 +18,11 @@ import java.util.List;
 /**
  * Created by Federico on 19/10/2014.
  */
-public class PersonDAO implements PersistentDAO<Person, Integer, PersonCriteria> {
-
-    @PersistenceContext(unitName = "paradigms-persistence-unit")
-    private EntityManager entityManager;
-
-    @Override
-    public Person create(Person person) {
-        this.entityManager.persist(person);
-        return person;
-    }
-
-    @Override
-    public Person retrieve(Integer id) {
-        return this.entityManager.find(Person.class, id);
-    }
-
-    @Override
-    public Person update(Person person) {
-        return this.entityManager.merge(person);
-    }
-
-    @Override
-    public void delete(Integer id) {
-        this.entityManager.remove(this.retrieve(id));
-    }
+public class PersonDAO extends GenericDAO<Person, Integer, PersonCriteria> {
 
     @Override
     public List<Person> retrieveByCriteria(PersonCriteria personCriteria) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Person> query = cb.createQuery(Person.class);
         Root<Person> person = query.from(Person.class);
         query.select(person);
@@ -66,7 +43,7 @@ public class PersonDAO implements PersistentDAO<Person, Integer, PersonCriteria>
             query.where(predicates.toArray(new Predicate[predicates.size()]));
         }
 
-        TypedQuery<Person> typedQuery = entityManager.createQuery(query);
+        TypedQuery<Person> typedQuery = getEntityManager().createQuery(query);
 
         return typedQuery.getResultList();
     }
