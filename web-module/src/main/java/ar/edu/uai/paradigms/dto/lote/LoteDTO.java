@@ -1,40 +1,35 @@
 package ar.edu.uai.paradigms.dto.lote;
 
-import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.paradigms.dto.DTO;
-
-
-
+import ar.edu.uai.paradigms.utils.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 
 /**
  * Created by Hal on 18/04/2016.
  */
-public class LoteDTO implements DTO<Integer>
-{
+public class LoteDTO implements DTO<Integer> {
 
-    private Integer     id;
-    private String      detail;
-    private Date        expiration_date;
-    private Date        entry_date;
-    private Integer     product_id;
+    private Integer id;
+    private String detail;
+    private Date expiration_date;
+    private Date entry_date;
+    private Integer product_id;
 
-    private Integer     remaining_units;
-    private Integer     total_units;
+    private Integer remaining_units;
+    private Integer total_units;
 
 
     @JsonCreator
-    public LoteDTO(@JsonProperty("id")              Integer id,
+    public LoteDTO(@JsonProperty("id") Integer id,
                    @JsonProperty("expiration_date") Date expiration_date,
-                   @JsonProperty("entry_date")      Date entry_date,
-                   @JsonProperty("detail")          String detail,
-                   @JsonProperty("product_id")      Integer product_id,
-                   @JsonProperty("total_units")     Integer total_units)
-    {
+                   @JsonProperty("entry_date") Date entry_date,
+                   @JsonProperty("detail") String detail,
+                   @JsonProperty("product_id") Integer product_id,
+                   @JsonProperty("total_units") Integer total_units) {
         this.id = id;
         this.detail = detail;
         this.expiration_date = expiration_date;
@@ -63,12 +58,16 @@ public class LoteDTO implements DTO<Integer>
     public Integer getProduct_id() {
         return product_id;
     }
+
     public Integer getRemaining_units() {
         return remaining_units;
     }
+
     public Integer getTotal_units() {
         return total_units;
     }
+
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getExpiration_date() {
         return expiration_date;
     }
@@ -77,6 +76,7 @@ public class LoteDTO implements DTO<Integer>
         return detail;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getEntry_date() {
         return entry_date;
     }

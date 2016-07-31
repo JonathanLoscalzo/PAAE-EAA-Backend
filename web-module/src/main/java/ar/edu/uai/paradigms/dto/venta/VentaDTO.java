@@ -1,12 +1,12 @@
 package ar.edu.uai.paradigms.dto.venta;
 
-import ar.edu.uai.model.usuario.Usuario;
 import ar.edu.uai.paradigms.dto.DTO;
 import ar.edu.uai.paradigms.dto.cliente.ClienteDTO;
 import ar.edu.uai.paradigms.dto.usuario.UsuarioDTO;
+import ar.edu.uai.paradigms.utils.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Collection;
 import java.util.Date;
@@ -48,7 +48,7 @@ public class VentaDTO implements DTO<Integer> {
         this.id = id;
         this.fecha = fecha;
         this.nro = nro;
-        this.cliente = new ClienteDTO(clienteId, null, "", "",-1);
+        this.cliente = new ClienteDTO(clienteId, null, "", "", -1);
         this.detalles = detalles;
         this.formasPago = formasPago; //forma_pago_id y cantidad
         this.usuario = new UsuarioDTO(userId, null, null, null);
@@ -62,7 +62,7 @@ public class VentaDTO implements DTO<Integer> {
                     Collection<VentaFormaPagoDTO> formasPago,
                     UsuarioDTO usuarioDTO) {
 
-            this.id = id;
+        this.id = id;
         this.fecha = fecha;
         this.nro = nro;
         this.cliente = cliente;//solo ID
@@ -71,7 +71,7 @@ public class VentaDTO implements DTO<Integer> {
         usuario = usuarioDTO;
     }
 
-    public VentaDTO(){
+    public VentaDTO() {
 
     }
 
@@ -79,6 +79,7 @@ public class VentaDTO implements DTO<Integer> {
         this.id = id;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getFecha() {
         return fecha;
     }
