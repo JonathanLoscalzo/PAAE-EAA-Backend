@@ -23,7 +23,8 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto> {
         return new Producto(productoDTO.getId(),
                 productoDTO.getName(),
                 productoDTO.getMinimum(),
-                proveedor);
+                proveedor,
+                productoDTO.getPrice());
     }
 
     public Producto translate(ProductoDTO productoDTO) {
@@ -33,7 +34,8 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto> {
         return new Producto(productoDTO.getId(),
                 productoDTO.getName(),
                 productoDTO.getMinimum(),
-                p/*proveedorTranslator.translate()*/);
+                p/*proveedorTranslator.translate()*/,
+                productoDTO.getPrice());
     }
 
     public ProductoDTO translateToDTO(Producto producto) {
@@ -42,7 +44,8 @@ public class ProductoTranslator extends TranslatorImpl<ProductoDTO, Producto> {
                     producto.getNombre(),
                     producto.getMinimo(),
                     producto.getCurrentUnits(),
-                    producto.getProveedor().getId());
+                    producto.getProveedor().getId(),
+                    producto.getPrice());
         }
         return null;
     }

@@ -1,14 +1,10 @@
 package ar.edu.uai.model.ventaDetalle;
 
 import ar.edu.uai.model.Generics.Model;
-import ar.edu.uai.model.venta.Venta;
 import ar.edu.uai.model.producto.Producto;
-import org.hibernate.annotations.Cascade;
+import ar.edu.uai.model.venta.Venta;
 
 import javax.persistence.*;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "VENTA_DETALLE")
@@ -17,7 +13,8 @@ public class VentaDetalle extends Model<Integer> {
 
     public VentaDetalle() {
     }
-    public VentaDetalle(Integer fila, Integer cantidad, Double precio, Producto producto, Venta venta){
+
+    public VentaDetalle(Integer fila, Integer cantidad, Double precio, Producto producto, Venta venta) {
         setPrecio(precio);
         setProducto(producto);
         setFila(fila);
@@ -30,20 +27,20 @@ public class VentaDetalle extends Model<Integer> {
     @Column(name = "LINEA_ID", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name="FILA")
+    @Column(name = "FILA")
     private Integer fila;
 
     @ManyToOne //TODO: ver el cascade type
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name="VENTA_ID")
+    @JoinColumn(name = "VENTA_ID")
     private Venta venta;
 
-    @Column(name="CANTIDAD")
+    @Column(name = "CANTIDAD")
     private Integer cantidad;
 
-    @Column(name= "PRECIO")
+    @Column(name = "PRECIO")
     private Double precio;
 
     @Override
@@ -69,6 +66,10 @@ public class VentaDetalle extends Model<Integer> {
 
     public Venta getVenta() {
         return venta;
+    }
+
+    public Integer getProductoId() {
+        return getProducto().getId();
     }
 
     public void setVenta(Venta venta) {

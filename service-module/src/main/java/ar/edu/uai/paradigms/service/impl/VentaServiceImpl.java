@@ -54,14 +54,13 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
     @Transactional
     public Boolean validateModel(Venta v) {
         Boolean valid = false;
-
         List<VentaDetalle> hasNoStock = v.getDetalles()
                 .stream()
                 .filter(d -> productoService.exist(d.getProducto().getId()) && !productoService.hasStock(d.getProducto().getId(), d.getCantidad()))
                 .collect(Collectors.toList());
 
         if (hasNoStock.size() > 0) {
-            hasNoStock.forEach(d -> v.addMessage("No tiene stock " + d.getProducto().getNombre() + " stock: " + d.getProducto().getCurrentUnits()));
+            hasNoStock.forEach(d -> v.addMessage("El producto " + d.getProducto().getNombre() + "No tiene stock  stock: " + d.getProducto().getCurrentUnits()));
             return !v.hasError();
         }
 
@@ -79,12 +78,28 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
                     .filter(d -> !formaPagoService.couldDiscount(d.getFormaPago().getId(), d.getCantidad()))
                     .collect(Collectors.toList());
             if (hasNoFounds.size() > 0) {
-                hasNoFounds.forEach(d -> v.addMessage("No tiene fondos " + d.getFormaPago().getNombre()));
+                hasNoFounds.forEach(d -> v.addMessage("La forma de pago  " + d.getFormaPago().getNombre() + "No tiene fondos"));
                 throw new ValidationException("Sin Fondos");
             }
         } catch (ValidationException ve) {
             // agregar los productos de nuevo, como aún no hice update no pasa nada.
             v.getDetalles().forEach(d -> productoService.restore(d.getProducto().getId(), d.getCantidad()));
+        }
+
+        Double pagoTotal = v.getVentaFormasPago()
+                .stream()
+                .mapToDouble(VentaFormaPago::getCantidad)
+                .sum();
+        Double totalProd = v.getDetalles().stream().mapToDouble(a -> a.getCantidad() * a.getPrecio()).sum();
+
+        if (pagoTotal < totalProd) {
+            v.addMessage("No alcanza a cubrir el pago total");
+            return false;
+        }
+
+        if (pagoTotal > totalProd && !v.getVentaFormasPago().stream().anyMatch(x -> x.getFormaPago().getPermiteDarCambio())) {
+            v.addMessage("No puede ser mayor que el total, porque la forma de pago no permite dar cambio");
+            return false;
         }
 
         v.getVentaFormasPago().stream().forEach(x -> formaPagoService.discount(x.getFormaPago().getId(), x.getCantidad()));
@@ -105,6 +120,6 @@ public class VentaServiceImpl extends ServiceImpl<Venta, Integer> implements Ven
 
     @Override
     public List<Venta> GetClientSales(Integer client_id) {
-        return ((VentaDAO)dao).getSalesFromClient(client_id);
+        return ((VentaDAO) dao).getSalesFromClient(client_id);
     }
 }

@@ -1,9 +1,9 @@
 package ar.edu.uai.model.producto;
 
 import ar.edu.uai.model.Generics.Model;
-import ar.edu.uai.model.ventaDetalle.VentaDetalle;
 import ar.edu.uai.model.lote.Lote;
 import ar.edu.uai.model.proveedor.Proveedor;
+import ar.edu.uai.model.ventaDetalle.VentaDetalle;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -27,42 +27,47 @@ public class Producto extends Model<Integer> {
     @Column(name = "MINIMO", nullable = false)
     private Integer minimo;
 
+    public Float getPrice() {
+        return price;
+    }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="producto", cascade=CascadeType.ALL)
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    @Column(name = "PRECIO", nullable = false)
+    private Float price;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "producto", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Collection<Lote> lotes;
 
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name="PROVEEDOR_ID")
+    @JoinColumn(name = "PROVEEDOR_ID")
     private Proveedor proveedor;
 
     @OneToMany
     private Collection<VentaDetalle> lineasFactura;
 
-    public Collection<Lote> getLotes()
-    {
+    public Collection<Lote> getLotes() {
         return lotes;
     }
 
-    public int getTotalUnits()
-    {
+    public int getTotalUnits() {
         int units = 0;
-        for(Lote l : lotes)
-        {
-            units+= l.getUnidadesTotales();
+        for (Lote l : lotes) {
+            units += l.getUnidadesTotales();
         }
         return units;
     }
 
-    public int getCurrentUnits()
-    {
+    public int getCurrentUnits() {
         int units = 0;
 
 
-        for(Lote l : lotes)
-        {
-            units+= l.getUnidadesRestantes();
+        for (Lote l : lotes) {
+            units += l.getUnidadesRestantes();
         }
         return units;
     }
@@ -89,21 +94,22 @@ public class Producto extends Model<Integer> {
         }
     }
 
-    public boolean porAgotarse()
-    {
-        if(getCurrentUnits() < minimo)
+    public boolean porAgotarse() {
+        if (getCurrentUnits() < minimo)
             return true;
 
         return false;
     }
+
     public Producto() {
     }
 
-    public Producto(Integer SKU, String nombre, Integer minimo, Proveedor proveedor) {
+    public Producto(Integer SKU, String nombre, Integer minimo, Proveedor proveedor, Float price) {
         this.SKU = SKU;
         this.nombre = nombre;
         this.minimo = minimo;
         this.proveedor = proveedor;
+        this.price = price;
         lotes = new ArrayList<>();
     }
 
@@ -129,6 +135,6 @@ public class Producto extends Model<Integer> {
         return this.getClass().getSimpleName() + " [id=" + SKU +
                 ", nombre=" + nombre +
                 ", minimo=" + minimo +
-                ", cantidad= " +"]";
+                ", cantidad= " + "]";
     }
 }
