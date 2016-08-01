@@ -1,7 +1,6 @@
 package ar.edu.uai.paradigms.controller.producto;
 
 
-import ar.edu.uai.model.Generics.Model;
 import ar.edu.uai.model.producto.Producto;
 import ar.edu.uai.model.producto.ProductoCriteria;
 import ar.edu.uai.model.proveedor.Proveedor;
@@ -20,7 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -42,11 +43,10 @@ public class ProductoController extends BaseController<ProductoDTO, ProductoCrit
         this.proveedorService = proveedorService;
     }
 
-    public ProductoController( ProductoService productoService,
-                               ProductoTranslator productoTranslator,
-                               ProductoConUnidadesTranslator productoConUnidadesTranslator,
-                               ProductoPorAgotarseTranslator productoPorAgotarseTranslator)
-    {
+    public ProductoController(ProductoService productoService,
+                              ProductoTranslator productoTranslator,
+                              ProductoConUnidadesTranslator productoConUnidadesTranslator,
+                              ProductoPorAgotarseTranslator productoPorAgotarseTranslator) {
         super(productoService, productoTranslator);
         this.productoPorAgotarseTranslator = productoPorAgotarseTranslator;
         this.productoConUnidadesTranslator = productoConUnidadesTranslator;
@@ -55,10 +55,10 @@ public class ProductoController extends BaseController<ProductoDTO, ProductoCrit
     protected ResponseEntity<ProductoDTO> createHook(ProductoDTO productoDTO) {
         LOGGER.debug("Received DTO: " + productoDTO);
 
-        Proveedor   proveedor           = this.proveedorService     .retrieve(productoDTO.getSupplier_id());
-        Producto    productoModel       = (Producto) ((ProductoTranslator)translator).translate(productoDTO, proveedor);
-        Producto    producto            = (Producto) this.service      .save(productoModel);
-        ProductoDTO productoDTOOutput   = (ProductoDTO) this.translator   .translateToDTO(producto);
+        Proveedor proveedor = this.proveedorService.retrieve(productoDTO.getSupplier_id());
+        Producto productoModel = (Producto) ((ProductoTranslator) translator).translate(productoDTO, proveedor);
+        Producto producto = (Producto) this.service.save(productoModel);
+        ProductoDTO productoDTOOutput = (ProductoDTO) this.translator.translateToDTO(producto);
 
         return new ResponseEntity<ProductoDTO>(productoDTOOutput, HttpStatus.CREATED);
     }
@@ -75,7 +75,7 @@ public class ProductoController extends BaseController<ProductoDTO, ProductoCrit
     @RequestMapping(method = RequestMethod.GET, value = "/close_to_run_out")
     @ResponseBody
     public ResponseEntity<List<ProductoPorAgotarseDTO>> aboutToRunOut(ProductoCriteria criteria) {
-        List<Producto> prod = ((ProductoService)this.service).productsCloseToRunOut();
+        List<Producto> prod = ((ProductoService) this.service).productsCloseToRunOut();
 
         List<ProductoPorAgotarseDTO> productosDTOs = this.productoPorAgotarseTranslator.translateToDTO(prod);
         return new ResponseEntity<>(productosDTOs, HttpStatus.OK);
