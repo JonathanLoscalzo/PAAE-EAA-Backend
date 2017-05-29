@@ -12,9 +12,10 @@ Use InteliJIdea
 ### Code Tips
 
 ### Layers
-#### Controller
-#### Service
-#### Persistence
+![alt text](https://github.com/JonathanLoscalzo/PAAE-EAA-Backend/blob/master/Arquitectura.jpg)
+#### Controller - Web Module folder
+#### Service - Service Module folder
+#### Persistence - Domain and Dao folders
 
 ### AOP
 #### Log
