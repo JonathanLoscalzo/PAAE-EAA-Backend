@@ -1,2 +1,1 @@
-Proyecto Frontend Ruby on Rails
-https://github.com/ramirofages/paradigms_app_server
+the Project that consumes this API https://github.com/JonathanLoscalzo/PAAE-EAA-Frontend
